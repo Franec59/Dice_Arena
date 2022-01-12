@@ -1,3 +1,3 @@
-# Dice Aréna
+# Dice Arena
 ## Simulateur de lancer de dés, multijoueur
 
