@@ -1,0 +1,141 @@
+/*CSS de la pagechoix_lobby.html*/
+
+body{
+    margin:0;
+    padding:0;
+    width: 100%;
+    background-image: url(../assets/images/space-lg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 120vh;
+    
+}
+
+
+.page_choix{
+    width: 90%;
+    min-height: 50rem;
+    margin:auto;
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    
+}
+
+.card {
+	width: 60rem;
+    margin: auto;
+    background: white;
+    position:center;
+    align-self: center;
+    top: 50rem;
+    border-radius: 1.5rem;
+    box-shadow: 4px 3px 20px #3535358c;
+    display:flex;
+    flex-direction: row;
+    
+}
+
+.leftside {
+	background: #030303;
+	width: 25rem;
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+	border-top-left-radius: 1.5rem;
+    border-bottom-left-radius: 1.5rem;
+}
+
+.left-name{
+    color:whitesmoke;
+    margin-top:2rem;
+}
+
+.product {
+    object-fit: cover;
+	width: 10rem;
+    height: 10rem;
+    border: 1px solid whitesmoke;
+    border-radius: 100%;
+    margin-top: 1rem;
+}
+
+.rightside1 {
+	background-image: url(../assets/images/d-background1.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+	width: 35rem;
+	border-bottom-right-radius: 1.5rem;
+    border-top-right-radius: 1.5rem;
+    padding: 1rem 2rem 3rem 3rem;
+}
+
+.rightside {
+	background-image: url(../assets/images/d-background2.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+	width: 35rem;
+	border-bottom-right-radius: 1.5rem;
+    border-top-right-radius: 1.5rem;
+    padding: 1rem 2rem 3rem 3rem;
+}
+
+p{
+    display:block;
+    font-size: 1.3rem;
+    font-weight: 400;
+    margin: .8rem 0;
+    color:white;
+    text-shadow: 2px 2px 2px black;
+}
+
+h1{
+    color:rgb(171, 219, 75);
+    text-shadow: 2px 2px 4px black;
+}
+
+.inputbox
+{
+    color:#030303;
+	width: 100%;
+    padding: 0.5rem;
+    border: none;
+    border-bottom: 1.5px solid #ccc;
+    margin-bottom: 1rem;
+    border-radius: 0.3rem;
+    color: #615a5a;
+    font-size: 1.1rem;
+    font-weight: 500;
+  	outline:none;
+	background: whitesmoke;
+}
+
+
+@media only screen and (max-width: 1000px) {
+    .card{
+        flex-direction: column;
+        width: auto;
+      
+    }
+
+    .leftside{
+        width: 100%;
+        border-top-right-radius: 0;
+        border-bottom-left-radius: 0;
+        border-top-right-radius:0;
+        border-radius:0;
+    }
+
+    .rightside{
+        width:auto;
+        border-bottom-left-radius: 1.5rem;
+        padding:0.5rem 3rem 3rem 2rem;
+      border-radius:0;
+    }
+}
+
+.rejoindre{
+    margin-top: 3rem;
+}
