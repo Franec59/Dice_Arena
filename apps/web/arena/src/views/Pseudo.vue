@@ -97,6 +97,8 @@ export default {
       this.$router.push("/createPartie")
     } else if ( this.profilChoice == "joueur"){
       this.$router.push("/joinPartie");
+    } else {
+        this.$router.push('/error');
     }
     },
   

@@ -29,6 +29,26 @@ const routes = [
     path: '/joinPartie',
     name: 'JoinPartie',
     component: () => import(/* webpackChunkName: "JoinPartie" */ '../views/JoinPartie.vue')
+  },
+  {
+    path: '/neutre',
+    name: 'Neutre',
+    component: () => import(/* webpackChunkName: "Neutre" */ '../views/Neutre.vue')
+  },
+  {
+    path: '/donjon',
+    name: 'Donjon',
+    component: () => import(/* webpackChunkName: "Donjon" */ '../views/Donjon.vue')
+  },
+  {
+    path: '/warhammer',
+    name: 'Warhammer',
+    component: () => import(/* webpackChunkName: "Warhammer" */ '../views/Warhammer.vue')
+  },
+  {
+    path: '/:catchAll(.*)', 
+    name: 'Notfound',
+    component: () => import(/* webpackChunkName: "Notfound" */ '../views/Notfound.vue')
   }
 ]
 

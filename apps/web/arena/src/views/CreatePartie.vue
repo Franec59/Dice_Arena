@@ -18,7 +18,7 @@
                         <p>Choix du thème</p>
                         <select class="inputbox" name="template" id="template" required v-model="templateChoice">
                             <option value="">-- Matrice de jeu --</option>
-                            <option value="aucune">Aucune (neutre)</option>
+                            <option value="neutre">Neutre</option>
                             <option value="donjon">Donjon & Dragon</option>
                             <option value="warhammer">Warhammer 40k</option>
                             <option value="cyperpunk">Cyberpunk (jdr)</option>
@@ -61,7 +61,7 @@ export default {
       // axios.post('http://...., newPartie )
       //   .then(response => {
       //     console.log(response);
-      //     this.$router.push("/createPartie");
+      //     this.$router.push("/en fonction du template");
       //   })
       //   .catch(error => {
       //     console.log(error);
@@ -70,6 +70,19 @@ export default {
     // test ====================================================
     console.log(newPartie)
     console.log(this.templateChoice)
+
+    // liens vers les pages en attendant la connexion avec le back => a supprimer ensuite ========
+    if ( this.templateChoice == "neutre"){
+      this.$router.push("/neutre")
+    } else if ( this.templateChoice == "donjon"){
+      this.$router.push("/donjon");
+    } else if ( this.templateChoice == "warhammer"){
+      this.$router.push("/warhammer");
+    } else {
+        this.$router.push('/error');
+    }
+
+
       }
   }
     
@@ -82,6 +95,7 @@ export default {
 .page_choix {
   width: 90%;
   margin: auto;
+  margin-top: 2rem;
   display: flex;
   justify-content: center;
   flex-direction: column;

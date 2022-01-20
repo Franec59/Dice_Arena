@@ -11,10 +11,10 @@
                     <Btn_supprimer />
                 </div>
                 <div class="rightside">
-                    <form action="{{ url_for('rejoindrePartie')}}" method="get">
+                    <form id="form_join_partie" v-on:submit.prevent="joinPartie()" method="get">
                         <h1>Rejoindre une partie</h1>
                         <p>Entrez le nom ou l'identifiant de la partie que vous souhaitez rejoindre !</p>
-                        <input type="text" class="inputbox" name="name" placeholder="Nom ou identifiant de la partie" required />
+                        <input type="text" class="inputbox" name="name" placeholder="Nom ou identifiant de la partie" required v-model="IdPartie" />
                         <Btn_valider />
                     </form>
                 </div>
@@ -27,6 +27,8 @@
 <script>
 import Btn_valider from "@/components/Btn_valider.vue";
 import Btn_supprimer from "@/components/Btn_supprimer.vue";
+// importer axios pour les requêtes vers le back
+// import axios from 'axios';
 
 export default {
   name: "JoinPartie",
@@ -34,6 +36,39 @@ export default {
       Btn_valider,
       Btn_supprimer
   },
+  data(){
+      return {
+          IdPartie :"",
+      }
+  },
+  methods:{
+      joinPartie() {
+        const IdPartie = {
+            IdPartie : this.IdPartie,
+        }
+    // requete Get by id ou by name avec Axios pour le back
+    //=====================================================
+      // axios.get('http://...., idPartie )
+      //   .then(response => {
+      //     this.IdPartie = response.data
+      //     console.log(response.data);
+      //     this.$router.push("/en fonction du template");
+      //   })
+      //   .catch(error => {
+      //     console.log(error);
+      //   })
+
+    // test ====================================================
+    console.log(IdPartie)
+    
+    // liens vers les pages en attendant la connexion avec le back => a supprimer ensuite ========
+    if ( this.IdPartie == "wh18"){
+      this.$router.push("/warhammer")
+    } else {
+        this.$router.push('/error');
+    }
+      }
+  }
     
 };
 </script>

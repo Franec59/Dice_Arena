@@ -107,6 +107,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
   background-color: black;
   color: antiquewhite;
 }
@@ -222,13 +223,15 @@ export default {
       "g g g e e e"
       "g g g e e e";
   }
-
+  
   .bloc7 {
     border-radius: 0px 0px 0px 20px;
+    text-align: center;
   }
 
   .bloc2 {
   border-radius: 20px 20px 0px 0px;
 }
+
 }
 </style>
