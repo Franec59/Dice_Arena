@@ -20,7 +20,7 @@ export default {
 <style scoped>
     .btn {		
 	position: relative;
-    width: 88%;
+    width: 100%;
 	padding: 0.5rem 1rem;
     display: flex;
     justify-content: center;
@@ -82,5 +82,15 @@ export default {
 
 a{
     text-decoration: none;
+}
+
+/* Partie responsive ================================================ */
+
+@media only screen and (max-width: 900px) {
+
+.btn{
+	width: 85%;
+}
+
 }
 </style>

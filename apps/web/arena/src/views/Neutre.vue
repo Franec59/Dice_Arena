@@ -108,7 +108,7 @@ export default {
 }
 
 .template_rendu{
-    width: 40rem;
+    width: 90%;
     min-height: 20rem;
     border: 2px solid wheat;
     margin-top: 3rem;
@@ -118,7 +118,7 @@ export default {
 }
 
 .nom_partie{
-    width: 25rem;
+    width: 90%;
     height: 5rem;
     border: 2px solid white;
     display: flex;
@@ -135,7 +135,7 @@ export default {
 }
 
 .liste_joueurs{
-    width: 25rem;
+    width: 90%;
     min-height: 12rem;
     border: 2px solid white;
     display: flex;
@@ -157,4 +157,14 @@ li{
     text-shadow: 2px 2px 4px black;
     padding-left: 1.5rem;
 }
+
+/* Partie responsive ================================================ */
+
+@media only screen and (max-width: 900px) {
+.lobby{
+  flex-direction: column;
+}
+
+}
+
 </style>

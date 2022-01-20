@@ -74,12 +74,12 @@ export default {
   methods:{
 
     createPseudo() {
-      const newUser = {
+      const newPseudo = {
         pseudo : this.pseudo,
       }
-    // requete avec Axios pour le back
+    // requete POST avec Axios pour le back
     //===============================================
-      // axios.post('http://...., newUser )
+      // axios.post('http://...., newPseudo )
       //   .then(response => {
       //     console.log(response);
       //     this.$router.push("/createPartie");
@@ -89,7 +89,7 @@ export default {
       //   })
 
     // test ====================================================
-    console.log(newUser)
+    console.log(newPseudo)
     console.log(this.profilChoice)
     
     // lien vers les pages en attendant la connexion avec le back => a supprimer ensuite ========
@@ -112,6 +112,8 @@ export default {
 .page_pseudo {
   width: 90%;
   margin: auto;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -258,17 +260,13 @@ h2 {
 
   .leftside {
     width: 100%;
-    border-top-right-radius: 0;
-    border-bottom-left-radius: 0;
-    border-top-right-radius: 0;
-    border-radius: 0;
+    border-radius: 1.5rem 1.5rem 0rem 0rem;
   }
 
   .rightside {
     width: auto;
-    border-bottom-left-radius: 1.5rem;
     padding: 0.5rem 3rem 3rem 2rem;
-    border-radius: 0;
+    border-radius: 0rem 0rem 1.5rem 1.5rem;
   }
 
   h3{

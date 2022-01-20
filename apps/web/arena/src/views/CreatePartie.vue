@@ -181,7 +181,7 @@ h1 {
 
 /* Partie responsive ======================================*/
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 900px) {
   .card {
     flex-direction: column;
     width: auto;
