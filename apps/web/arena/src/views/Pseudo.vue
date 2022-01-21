@@ -76,6 +76,7 @@ export default {
     createPseudo() {
       const newPseudo = {
         pseudo : this.pseudo,
+        profil : this.profilChoice
       }
     // requete POST avec Axios pour le back
     //===============================================

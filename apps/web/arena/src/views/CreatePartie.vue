@@ -21,6 +21,7 @@
                             <option value="neutre">Neutre</option>
                             <option value="donjon">Donjon & Dragon</option>
                             <option value="warhammer">Warhammer 40k</option>
+                            <option value="yams">Partie de Yam's</option>
                             <option value="cyperpunk">Cyberpunk (jdr)</option>
                         </select>
                         <Btn_valider />
@@ -50,6 +51,9 @@ export default {
           templateChoice : ""
       }
   },
+  // created(){
+  //   axios.get('http://..../idPseudo )
+  // },
 
   methods:{
       createPartie() {
@@ -61,7 +65,7 @@ export default {
       // axios.post('http://...., newPartie )
       //   .then(response => {
       //     console.log(response);
-      //    response : idPartie + Pseudo du master
+      //    response : idPartie + nom de la partie + Pseudo + profil master
       //     this.$router.push("/en fonction du template");
       //   })
       //   .catch(error => {
@@ -73,12 +77,15 @@ export default {
     console.log(this.templateChoice)
 
     // liens vers les pages en attendant la connexion avec le back => a supprimer ensuite ========
+    
     if ( this.templateChoice == "neutre"){
-      this.$router.push("/neutre")
+      this.$router.push({ name: 'Neutre', params: { id: this.partie }})
     } else if ( this.templateChoice == "donjon"){
-      this.$router.push("/donjon");
+      this.$router.push({ name: 'Donjon', params: { id: this.partie }})
     } else if ( this.templateChoice == "warhammer"){
-      this.$router.push("/warhammer");
+      this.$router.push({ name: 'Warhammer', params: { id: this.partie }})
+    } else if ( this.templateChoice == "yams"){
+      this.$router.push({ name: 'Yam', params: { id: this.partie }})
     } else {
         this.$router.push('/error');
     }

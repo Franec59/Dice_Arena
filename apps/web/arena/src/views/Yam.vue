@@ -1,7 +1,9 @@
 <template>
   <div class="lobby">
     <div class="template">
-      <div class="template_title"></div>
+      <div class="template_title">
+        <h1 class="yam">Yam's</h1>
+      </div>
       <div class="lancer">
         <h3>Lancer les dés</h3>
       </div>
@@ -23,7 +25,6 @@
           <li>nom joueur 1</li>
           <li>nom joueur 2</li>
           <li>nom joueur 3</li>
-          <li>{{ profil }}</li>
         </ol>
       </div>
       <Btn_cloturer v-if="profil === 'master'" />
@@ -37,11 +38,9 @@
 <script>
 import Btn_cloturer from "@/components/Btn_cloturer.vue";
 import Btn_quitter from "@/components/Btn_quitter.vue";
-// importer axios pour les requêtes vers le back
-// import axios from 'axios';
 
 export default {
-  name: "Warhammer",
+  name: "Yam",
   components: {
     Btn_cloturer,
     Btn_quitter,
@@ -55,7 +54,7 @@ export default {
   created() {
     console.log(this.id);
   },
-  methods: {
+methods: {
     templatePartie() {
       // requete avec Axios pour le back
       //===============================================
@@ -72,8 +71,8 @@ export default {
   },
   mounted() {
     // pour tester les bouton cloturer ou quitter en attendant le retour du back
-    this.profil = "master";
-    // this.profil = "joueur"
+    // this.profil = "master"
+    this.profil = "joueur";
   },
 };
 </script>
@@ -87,7 +86,7 @@ export default {
   border: 1px solid white;
   min-height: 100vh;
   border-radius: 20px 20px 20px 20px;
-  background-image: url(../assets/images/warhammer.jpg);
+  background-image: url(../assets/images/b_yam.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   display: flex;
@@ -103,18 +102,19 @@ export default {
 }
 
 .template_title {
-  width: 100%;
-  min-height: 10rem;
-  background-image: url(../assets/images/NewLogowh.png);
+  width: 16rem;
+  height: 13rem;
+  background-image: url(../assets/images/yam.png);
   background-size: cover;
   background-repeat: no-repeat;
   margin-top: 2rem;
   margin-left: 1rem;
 }
 
-.template_title h1 {
+.yam {
   color: whitesmoke;
-  text-shadow: 2px 2px 4px black;
+  text-shadow: 4px 4px 6px black;
+  font-size: 3rem;
 }
 
 .lancer {
@@ -128,8 +128,11 @@ export default {
   border: 2px solid wheat;
   background-image: radial-gradient(
     circle at center center,
-    rgb(71, 71, 71),
-    rgb(8, 8, 8)
+    rgb(86, 197, 113),
+    rgb(77, 181, 95),
+    rgb(67, 165, 77),
+    rgb(58, 149, 59),
+    rgb(48, 133, 41)
   );
 }
 
@@ -151,50 +154,39 @@ export default {
   border: 2px solid wheat;
   margin-top: 3rem;
   background-image: linear-gradient(
-      216deg,
-      rgba(77, 77, 77, 0.05) 0%,
-      rgba(77, 77, 77, 0.05) 25%,
-      rgba(42, 42, 42, 0.05) 25%,
-      rgba(42, 42, 42, 0.05) 38%,
-      rgba(223, 223, 223, 0.05) 38%,
-      rgba(223, 223, 223, 0.05) 75%,
-      rgba(36, 36, 36, 0.05) 75%,
-      rgba(36, 36, 36, 0.05) 100%
+      127deg,
+      rgba(153, 255, 88, 0.46) 0%,
+      rgba(153, 255, 88, 0.46) 14.286%,
+      rgba(134, 245, 84, 0.46) 14.286%,
+      rgba(134, 245, 84, 0.46) 28.572%,
+      rgba(114, 236, 80, 0.46) 28.572%,
+      rgba(114, 236, 80, 0.46) 42.858%,
+      rgba(95, 226, 76, 0.46) 42.858%,
+      rgba(95, 226, 76, 0.46) 57.144%,
+      rgba(76, 216, 72, 0.46) 57.144%,
+      rgba(76, 216, 72, 0.46) 71.43%,
+      rgba(56, 207, 68, 0.46) 71.43%,
+      rgba(56, 207, 68, 0.46) 85.716%,
+      rgba(37, 197, 64, 0.46) 85.716%,
+      rgba(37, 197, 64, 0.46) 100.002%
     ),
     linear-gradient(
-      44deg,
-      rgba(128, 128, 128, 0.05) 0%,
-      rgba(128, 128, 128, 0.05) 34%,
-      rgba(212, 212, 212, 0.05) 34%,
-      rgba(212, 212, 212, 0.05) 57%,
-      rgba(25, 25, 25, 0.05) 57%,
-      rgba(25, 25, 25, 0.05) 89%,
-      rgba(135, 135, 135, 0.05) 89%,
-      rgba(135, 135, 135, 0.05) 100%
-    ),
-    linear-gradient(
-      241deg,
-      rgba(55, 55, 55, 0.05) 0%,
-      rgba(55, 55, 55, 0.05) 14%,
-      rgba(209, 209, 209, 0.05) 14%,
-      rgba(209, 209, 209, 0.05) 60%,
-      rgba(245, 245, 245, 0.05) 60%,
-      rgba(245, 245, 245, 0.05) 69%,
-      rgba(164, 164, 164, 0.05) 69%,
-      rgba(164, 164, 164, 0.05) 100%
-    ),
-    linear-gradient(
-      249deg,
-      rgba(248, 248, 248, 0.05) 0%,
-      rgba(248, 248, 248, 0.05) 32%,
-      rgba(148, 148, 148, 0.05) 32%,
-      rgba(148, 148, 148, 0.05) 35%,
-      rgba(202, 202, 202, 0.05) 35%,
-      rgba(202, 202, 202, 0.05) 51%,
-      rgba(181, 181, 181, 0.05) 51%,
-      rgba(181, 181, 181, 0.05) 100%
-    ),
-    linear-gradient(92deg, hsl(214, 0%, 11%), hsl(214, 0%, 11%));
+      285deg,
+      rgb(116, 183, 117) 0%,
+      rgb(116, 183, 117) 14.286%,
+      rgb(113, 173, 114) 14.286%,
+      rgb(113, 173, 114) 28.572%,
+      rgb(110, 163, 110) 28.572%,
+      rgb(110, 163, 110) 42.858%,
+      rgb(107, 154, 107) 42.858%,
+      rgb(107, 154, 107) 57.144%,
+      rgb(104, 144, 103) 57.144%,
+      rgb(104, 144, 103) 71.43%,
+      rgb(101, 134, 100) 71.43%,
+      rgb(101, 134, 100) 85.716%,
+      rgb(98, 124, 96) 85.716%,
+      rgb(98, 124, 96) 100.002%
+    );
   padding-left: 1rem;
   color: whitesmoke;
 }
@@ -285,7 +277,7 @@ li {
   }
 
   .template_title {
-    width: 80%;
+    width: 60%;
     min-height: 5rem;
   }
 

@@ -1,18 +1,18 @@
 <template>
-  <div class="btn from-right" v-on:click.prevent="cloture()">
-    Cloturer la partie
+  <div class="btn from-right" v-on:click.prevent="quitter()">
+    Quitter la partie
   </div>
 </template>
 
 <script>
 export default {
-  name: "Btn_cloturer",
+  name: "Btn_quitter",
   props: {
     msg: String,
   },
   methods: {
-    cloture: function () {
-      confirm("Vous allez cloturer définitivement cette partie !");
+    quitter: function () {
+      confirm("Vous allez quitter définitivement cette partie !");
       this.$router.push("/");
       //requête back pour effacer les données dans la BDD
     },

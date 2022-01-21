@@ -15,6 +15,7 @@
     <div class="joueurs">
       <div class="nom_partie">
         <h2>Nom de la partie</h2>
+        <h4 class="identifiant">{{ id }}</h4>
       </div>
       <div class="liste_joueurs">
         <h2 class="joueurs">Joueurs inscrits sur la partie</h2>
@@ -24,7 +25,8 @@
           <li>nom joueur 3</li>
         </ol>
       </div>
-      <Btn_cloturer />
+      <Btn_cloturer v-if="profil==='master'" />
+      <Btn_quitter v-else-if="profil==='joueur'" />
     </div>
     <!--fin de joueurs-->
   </div>
@@ -33,12 +35,46 @@
 
 <script>
 import Btn_cloturer from "@/components/Btn_cloturer.vue";
+import Btn_quitter from "@/components/Btn_quitter.vue";
+// importer axios pour les requêtes vers le back
+// import axios from 'axios';
 
 export default {
-  name: "Neutre",
+  name: "Donjon",
   components: {
     Btn_cloturer,
+    Btn_quitter,
   },
+  data() {
+    return {
+      profil:""
+    }
+  },
+  props: ['id'],
+  created() {
+    console.log(this.id);
+  },
+  methods:{
+      templatePartie() {
+    // requete avec Axios pour le back
+    //===============================================
+      // axios.get('http://...., idPartie)
+      //   .then(response => {
+      //     console.log(response);
+      //    response : idPartie + nom de la partie + liste des joueurs ( pseudos) + profil master et joueur
+      //     this.$router.push("/en fonction du template");
+      //   })
+      //   .catch(error => {
+      //     console.log(error);
+      //   })
+      }
+  },
+
+mounted (){
+    // pour tester les bouton cloturer ou quitter en attendant le retour du back
+    // this.profil = "master"
+    this.profil = "joueur"
+  }
 };
 </script>
 
@@ -74,7 +110,6 @@ export default {
     background-repeat: no-repeat;
     margin-top : 2rem;
     margin-left:1rem;
-    /* background-color: rgb(0,0,0, 0.3); */
 }
 
 .template_title h1{
@@ -122,10 +157,19 @@ export default {
     border: 2px solid white;
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding-top:1rem;
     background-image: repeating-linear-gradient(0deg, rgba(232,224,224, 0.08) 0px, rgba(232,224,224, 0.08) 1px,transparent 1px, transparent 11px),repeating-linear-gradient(90deg, rgba(232,224,224, 0.08) 0px, rgba(232,224,224, 0.08) 1px,transparent 1px, transparent 11px),linear-gradient(90deg, rgb(20,20,20),rgb(20,20,20));
     border-radius: 10px 10px 10px 10px;
     margin-top : 2rem;
     margin-right:1rem;
+}
+
+.identifiant{
+  color:rgb(168, 149, 149);
+  position: relative;
+  bottom: 2rem;
 }
 
 .nom_partie h2{

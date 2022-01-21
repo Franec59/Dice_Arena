@@ -31,22 +31,34 @@ const routes = [
     component: () => import(/* webpackChunkName: "JoinPartie" */ '../views/JoinPartie.vue')
   },
   {
-    path: '/neutre',
+    path: '/neutre/:id',
     name: 'Neutre',
-    component: () => import(/* webpackChunkName: "Neutre" */ '../views/Neutre.vue')
+    component: () => import(/* webpackChunkName: "Neutre" */ '../views/Neutre.vue'),
+    props: true
   },
   {
-    path: '/donjon',
+    path: '/donjon/:id',
     name: 'Donjon',
-    component: () => import(/* webpackChunkName: "Donjon" */ '../views/Donjon.vue')
+    component: () => import(/* webpackChunkName: "Donjon" */ '../views/Donjon.vue'),
+    props: true
   },
   {
-    path: '/warhammer',
     name: 'Warhammer',
-    component: () => import(/* webpackChunkName: "Warhammer" */ '../views/Warhammer.vue')
+    path: '/warhammer/:id',
+    component: () => import(/* webpackChunkName: "Warhammer" */ '../views/Warhammer.vue'),
+    props: true
+
   },
   {
-    path: '/:catchAll(.*)', 
+    name: 'Yam',
+    path: '/yam/:id',
+    component: () => import(/* webpackChunkName: "Warhammer" */ '../views/Yam.vue'),
+    props: true
+
+  },
+  {
+    // path: '/:catchAll(.*)',
+    path: '/:pathMatch(.*)*',
     name: 'Notfound',
     component: () => import(/* webpackChunkName: "Notfound" */ '../views/Notfound.vue')
   }

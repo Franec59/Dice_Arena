@@ -14,7 +14,7 @@
                     <form id="form_join_partie" v-on:submit.prevent="joinPartie()" method="get">
                         <h1>Rejoindre une partie</h1>
                         <p>Entrez le nom ou l'identifiant de la partie que vous souhaitez rejoindre !</p>
-                        <input type="text" class="inputbox" name="name" placeholder="Nom ou identifiant de la partie" required v-model="IdPartie" />
+                        <input type="text" class="inputbox" name="name" placeholder="Nom ou identifiant de la partie" required v-model="idPartie" />
                         <Btn_valider />
                     </form>
                 </div>
@@ -38,21 +38,21 @@ export default {
   },
   data(){
       return {
-          IdPartie :"",
+          idPartie :"",
       }
   },
   methods:{
       joinPartie() {
-        const IdPartie = {
-            IdPartie : this.IdPartie,
+        const idPartie = {
+            idPartie : this.idPartie,
         }
     // requete Get by id ou by name avec Axios pour le back
     //=====================================================
       // axios.get('http://...., idPartie )
       //   .then(response => {
       //     this.partie = response.data
-       //     response data => idPartie + pseudo
-      //     console.log(response.data);
+       //     response data => data.idPartie + data.nom_de_la_partie + data.pseudo + data.profil joueur
+      //     console.log(response.data); 
       //     this.$router.push("/en fonction du template");
       //   })
       //   .catch(error => {
@@ -60,11 +60,22 @@ export default {
       //   })
 
     // test ====================================================
-    console.log(IdPartie)
+    console.log(idPartie)
     
     // liens vers les pages en attendant la connexion avec le back => a supprimer ensuite ========
-    if ( this.IdPartie == "wh18"){
-      this.$router.push("/warhammer")
+    //dataIdPartie => id de la partie venant du backend ( bdd )
+    const dataIdPartieNeutre = "n214"
+    const dataIdPartieWh = "wh18"
+    const dataIdPartieDd = "add12"
+    
+    if ( this.idPartie == dataIdPartieNeutre ){
+      this.$router.push({ name: 'Neutre', params: { id: dataIdPartieNeutre }})
+    }
+    else if ( this.idPartie == dataIdPartieWh){
+      this.$router.push({ name: 'Warhammer', params: { id: dataIdPartieWh }})
+    } 
+    else if ( this.idPartie == dataIdPartieDd){
+      this.$router.push({ name: 'Donjon', params: { id: dataIdPartieDd }})
     } else {
         this.$router.push('/error');
     }
