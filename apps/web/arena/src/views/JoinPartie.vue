@@ -50,7 +50,8 @@ export default {
     //=====================================================
       // axios.get('http://...., idPartie )
       //   .then(response => {
-      //     this.IdPartie = response.data
+      //     this.partie = response.data
+       //     response data => idPartie + pseudo
       //     console.log(response.data);
       //     this.$router.push("/en fonction du template");
       //   })

@@ -1,6 +1,6 @@
-# Partie fontend de l'application Dice-Arèna
+# Partie frontend de l'application Dice-Arèna
 
-## font construit avec Vue CLI ( @vue/cli 4.5.15 )
+## front construit avec Vue CLI ( @vue/cli 4.5.15 )
 https://cli.vuejs.org/
 
 
@@ -10,6 +10,7 @@ installez node/npm sur votre machine
 https://nodejs.org/fr/download/
 
 node --version : v16.13.2
+(attention problème de compatibilté avec node v17)
 
 ## Project setup
 ```

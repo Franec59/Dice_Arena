@@ -54,13 +54,14 @@ export default {
   methods:{
       createPartie() {
         const newPartie = {
-            pseudo : this.partie,
+            partie : this.partie,
         }
     // requete avec Axios pour le back
     //===============================================
       // axios.post('http://...., newPartie )
       //   .then(response => {
       //     console.log(response);
+      //    response : idPartie + Pseudo du master
       //     this.$router.push("/en fonction du template");
       //   })
       //   .catch(error => {
