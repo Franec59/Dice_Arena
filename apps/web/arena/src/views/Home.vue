@@ -5,19 +5,19 @@
       <div class="bloc2">
         <div class="bienvenue">
           <h1 class="affichage">Bienvenue sur<br />Dice-Aréna</h1>
-          <h2 class="affichage2">Un simulateur de lancer de Dés</h2>
-          <h3 class="affichage2">Multijoueur & Thématique !</h3>
+          <h2 class="affichage2">Une aide de jeux</h2>
+          <h3 class="affichage2">Multijoueur & Thématique<br /> de lancé de dés !</h3>
         </div>
         <!--insertion du cube-->
         <Cube />
       </div>
       <div class="bloc3"></div>
       <div class="bloc4">
-        <div class="logo">
-          <p>Logo Xavier ( cliquable )</p>
-          <img src="../assets/images/samurai-logo.jpg" alt="Samurai-mask" />
-        </div>
         <!-- logo de xavier -->
+        <div class="logo">
+          <!-- <img src="../assets/images/logo_da.png" alt="Logo_dice_arena" /> -->
+        </div>
+        
         <!-- btn enter -->
         <Btn_enter />
       </div>
@@ -110,6 +110,16 @@ export default {
   text-align: center;
   background-color: black;
   color: antiquewhite;
+}
+
+.logo{
+  margin-top: 2rem;
+  width: 100%;
+  height: 100rem;
+  background-image: url(../assets/images/logo_da.png);
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .bloc5 {

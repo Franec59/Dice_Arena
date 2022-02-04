@@ -43,7 +43,8 @@ export default {
   height: 100%;
   position: relative;
   bottom: 0.5rem;
-  margin-top: 5rem;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
 }
 
 .btn {
