@@ -9,7 +9,7 @@ terraform{
 
 provider "google" {
     project = "dice-arena-340310"
-    credentials = var.credentials
+    credentials = "${file("./environements/key.json")}"
     region = "europe-west1"
     zone = "europe-west1-b"
 }
