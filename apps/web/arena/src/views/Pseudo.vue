@@ -5,11 +5,10 @@
       <div class="card">
         <div class="leftside">
           <!-- logo de xavier -->
-          <h2>logo de xavier</h2>
           <img
-            src="../assets/images/samurai-logo.jpg"
+            src="../assets/images/logo_da.png"
             class="product"
-            alt="Samurai-mask"
+            alt="Logo Dice_arena"
           />
         </div>
         <div class="rightside">
@@ -145,10 +144,9 @@ export default {
 }
 
 .product {
-  object-fit: cover;
-  width: 15em;
-  height: 15em;
-  border-radius: 100%;
+  object-fit: contain;
+  width: 20em;
+  height: 20em;
 }
 
 .avatar {
