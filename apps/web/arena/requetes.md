@@ -12,9 +12,12 @@ https://fr.vuejs.org/v2/cookbook/using-axios-to-consume-apis.html
 
 ### Pseudo
 page : views/pseudo.vue
-POST => bdd : envoi au back le pseudo et le profil du joueur
+
+POST => envoi au back le pseudo et le profil du joueur
 .   pseudo du joueur
 .   profil : master ou joueur
+
+'''javascript
 >createPseudo() {
       const newPseudo = {
         pseudo : this.pseudo,
@@ -59,7 +62,7 @@ le back renvoi l'id de la partie
 ### joinPartie
 page : views/joinPartie
 
-1) get => bdd pour pouvoir afficher le pseudo du joueur (joueur) sur la page
+1) get => API pour pouvoir afficher le pseudo du joueur (joueur) sur la page
 >created(){
     axios.get('http://..../idPseudo )
     .then(response => { pseudo +idPseudo
@@ -67,7 +70,7 @@ page : views/joinPartie
 
 le back renvoi le pseudo du joueur + idPseudo
 
-2) POST => bdd : pour rejoindre une partie, le joueur entre l'id de la partie
+2) POST => API : pour rejoindre une partie, le joueur entre l'id de la partie
 .   id de la partie
 .   id du pseudo qui rejoint la partie ( idPseudo)
 
@@ -90,7 +93,7 @@ le back renvoi le pseudo du joueur + idPseudo
 
 ### pour chaque template
 page : views/"nom template"
-get => bdd pour obtenir les informations de la partie :
+get => API pour obtenir les informations de la partie :
 .   nom de la partie
 .   id de la partie
 .   pseudo du joueur (master)

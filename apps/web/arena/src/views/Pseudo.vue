@@ -53,8 +53,7 @@
 
 <script>
 import Btn_valider from "@/components/Btn_valider.vue";
-// importer axios pour les requêtes vers le back
-// import axios from 'axios';
+import axios from 'axios';
 
 export default {
   name: "Pseudo",
@@ -76,21 +75,21 @@ export default {
       const newPseudo = {
         pseudo : this.pseudo,
         profil : this.profilChoice
-      }
-    // requete POST avec Axios pour le back
-    //===============================================
-      // axios.post('http://...., newPseudo )
-      //   .then(response => {
-      //     console.log(response);
-      //     this.$router.push("/createPartie");
-      //   })
-      //   .catch(error => {
-      //     console.log(error);
-      //   })
+      };
+      //requete axios vers le backend
+      axios
+        .get('http://192.168.1.15:80/pseudo')
+        .then((response) => {
+          console.log(response);
+          this.$router.push("/createPartie");
+        })
+        .catch(error => {
+          console.log(error);
+        }),
 
     // test ====================================================
-    console.log(newPseudo)
-    console.log(this.profilChoice)
+      console.log(newPseudo);
+      console.log(this.profilChoice);
     
     // lien vers les pages en attendant la connexion avec le back => a supprimer ensuite ========
     if ( this.profilChoice == "master"){
@@ -100,9 +99,10 @@ export default {
     } else {
         this.$router.push('/error');
     }
-    },
-  
+    
 
+    }//fin de createpseudo
+  
   }//fin de methods
   
 };

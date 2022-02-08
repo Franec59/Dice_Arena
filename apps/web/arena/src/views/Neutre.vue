@@ -10,7 +10,9 @@
       <div class="template_rendu">
         <h3>Résultats ou scores attendus en fonction des templates de jeu</h3>
       </div>
+      <Lancer_des />
     </div>
+    
     <!--fin de template-->
     <div class="joueurs">
       <div class="nom_partie">
@@ -37,6 +39,7 @@
 <script>
 import Btn_cloturer from "@/components/Btn_cloturer.vue";
 import Btn_quitter from "@/components/Btn_quitter.vue";
+import Lancer_des from "@/components/Lancer_des.vue";
 
 // import axios from 'axios';
 
@@ -45,6 +48,7 @@ export default {
   components: {
     Btn_cloturer,
     Btn_quitter,
+    Lancer_des
   },
   data() {
     return {

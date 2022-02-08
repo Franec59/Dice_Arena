@@ -46,9 +46,12 @@ export default {
         const idPartie = {
             idPartie : this.idPartie,
         }
-    // requete Get by id ou by name avec Axios pour le back
+    // requete post by id ou by name avec Axios pour le back
     //=====================================================
-      // axios.get('http://...., idPartie )
+
+    // get => recupérer ton pseudo
+
+      // axios.post('http://...., idPartie )
       //   .then(response => {
       //     this.partie = response.data
        //     response data => data.idPartie + data.nom_de_la_partie + data.pseudo + data.profil joueur
@@ -58,6 +61,8 @@ export default {
       //   .catch(error => {
       //     console.log(error);
       //   })
+
+      //get id partie pour être connecté à la partie
 
     // test ====================================================
     console.log(idPartie)
