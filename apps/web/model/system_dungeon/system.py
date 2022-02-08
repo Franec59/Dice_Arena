@@ -1,7 +1,10 @@
 import random
 
 class Dungeon():
-    def attaque():
+    def __init__(self) -> None:
+        pass
+    
+    def attaque(self):
         bonus=int(input("bonus d'attaque: "))
         ca=int(input("classe d'armure adverse: "))
         pot=random.sample(range(1, 21), 1)
@@ -14,7 +17,7 @@ class Dungeon():
                 resultattaque.append("Touche")
         return resultattaque
 
-    def jet():
+    def jet(self):
         bonus=int(input("bonus du jet: "))
         diff=int(input("difficulté à atteindre: "))
         malus=int(input("Malus? "))
