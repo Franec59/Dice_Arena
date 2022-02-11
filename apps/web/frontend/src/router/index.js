@@ -40,7 +40,10 @@ const routes = [
     path: '/donjon/:id',
     name: 'Donjon',
     component: () => import(/* webpackChunkName: "Donjon" */ '../views/Donjon.vue'),
-    props: true
+    props: true,
+    // beforeEnter: (to, from, next) => {
+    //   // Access store here
+    //   next()
   },
   {
     name: 'Warhammer',

@@ -1,18 +1,52 @@
 <template>
-  <div class="btn from-right" v-on:click.prevent="goToPseudo()">Supprimer</div>
+  <div class="btn from-right" v-on:click.prevent="deletePseudo()">Supprimer{{ idPseudo }}</div>
 </template>
 
 <script>
+import axios from 'axios';
+import { mapState } from 'vuex'
+
 export default {
   name: "Btn_supprimer",
   props: {
     msg: String,
   },
+  
+  // created: function(){
+  //       this.idC = this.$store.state.idPseudo
+  //       console.log("this.idC =", this.idC)
+  //     },
+
   methods: {
-    goToPseudo: function () {
+    deletePseudo: function () {
+      // const id = this.$store.state.idPseudo
+      // console.log("depuis store", id)
+      axios
+        .delete('http://localhost:8000/partie', { data: { id : this.$store.state.idPseudo }},
+          {
+            headers: {
+            'Content-Type': 'application/json;charset=UTF-8',
+            "Accept": "application/json",
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods' : "POST, GET, OPTIONS, DELETE, PUT",
+            'Access-Control-Allow-Headers': "append,delete,entries,foreach,get,has,keys,set,values,Authorization"
+          },
+        }
+        )
+        .then((response) => {
+          console.log(response)
+        })
+        .catch(error => {
+          console.log(error);
+        })
+
       this.$router.push("/pseudo");
     },
   },
+  computed:{
+    ...mapState(['idPseudo'])
+    
+  }
 };
 </script>
 

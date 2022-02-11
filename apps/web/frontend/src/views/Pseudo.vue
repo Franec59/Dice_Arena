@@ -89,22 +89,26 @@ export default {
 
       //requete axios vers le backend ===============================================
       axios
-        .post('http://localhost:8000/pseudo', newPseudo)
+        .post('http://localhost:8000/partie', newPseudo)
         .then((response) => {
           console.log(response)
-          console.log(response.data.pseudo)
+          // console.log(response.data.pseudo)
           const pseudoRes = response.data.pseudo
-          this.$store.commit('SET_PSEUDOMASTER', pseudoRes)
-          this.$router.push("/createPartie");
+          this.$store.commit('SET_PSEUDO', pseudoRes)
+          
+          const idPseudoRes = response.data._id
+          this.$store.commit('SET_PSEUDOID', idPseudoRes)
+          console.log(idPseudoRes)
+
+          const profilRes = response.data.profil
+          this.$store.commit('SET_PROFILE', profilRes)
+          console.log(profilRes)
+
         })
         .catch(error => {
           console.log(error);
-        }),
-
-    // test ====================================================
-      console.log(newPseudo);
-    
-    // lien vers les pages en attendant la connexion avec le back => a supprimer ensuite ========
+        })
+    // lien vers createPartie ou joinPartie en fonction du profilChoice =============================
     if ( this.profilChoice == "master"){
       this.$router.push("/createPartie")
     } else if ( this.profilChoice == "joueur"){
@@ -112,8 +116,6 @@ export default {
     } else {
         this.$router.push('/error');
     }
-    
-
     }//fin de createpseudo
   
   }//fin de methods

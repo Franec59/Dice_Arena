@@ -5,7 +5,7 @@
             <div class="card">
                 <div class="leftside">
                     <h1>Profil Joueur</h1>
-                    <h3 class="left-name">{{ pseudoJoueur }}</h3>
+                    <h3 class="left-name">{{ pseudoMaster }}</h3>
                     <!-- avatar du joueur -->
                     <img src="../assets/images/avatar_f.png" class="product" alt="avatar_fille" />
                     <Btn_supprimer />
@@ -27,7 +27,7 @@
 <script>
 import Btn_valider from "@/components/Btn_valider.vue";
 import Btn_supprimer from "@/components/Btn_supprimer.vue";
-// importer axios pour les requêtes vers le back
+import { mapState } from 'vuex'
 // import axios from 'axios';
 
 export default {
@@ -85,6 +85,10 @@ export default {
         this.$router.push('/error');
     }
       }
+  },
+computed:{
+    ...mapState(['pseudoMaster']),
+    
   }
     
 };

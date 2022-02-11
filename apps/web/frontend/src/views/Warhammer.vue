@@ -286,7 +286,7 @@ li {
 
   .template_title {
     width: 80%;
-    min-height: 5rem;
+    min-height: 6rem;
   }
 
   .nom_partie {

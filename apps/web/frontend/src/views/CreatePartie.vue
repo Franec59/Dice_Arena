@@ -7,7 +7,8 @@
                     <h1>Profil Master</h1>
                     <h2 class="left-name">"{{ pseudoMaster }}"</h2>
                     <!-- avatar du joueur -->
-                    <img src="../assets/images/avatar_g.png" class="product" alt="avatar_garçon" />
+                    <!-- <img v-bind:src="avatar" class="product" alt="avatar_joueur" /> -->
+                    <img src="../assets/images/avatar_g.png" class="product" alt="avatar_joueur" />
                     <Btn_supprimer />
                 </div>
                 <div class="rightside1">
@@ -36,7 +37,7 @@
 <script>
 import Btn_valider from "@/components/Btn_valider.vue";
 import Btn_supprimer from "@/components/Btn_supprimer.vue";
-// import axios from 'axios';
+import axios from 'axios';
 import { mapState } from 'vuex'
 
 export default {
@@ -49,6 +50,8 @@ export default {
       return {
           partie :"",
           templateChoice : "",
+          // avatar : "../assets/images/avatar_g.png"
+          // idPseudo : ""
           
       }
   },
@@ -58,43 +61,45 @@ export default {
         const newPartie = {
             partie : this.partie,
         }
-    // requete avec Axios pour le back
-    //===============================================
-      // axios.post('http://...., newPartie )
-      //   .then(response => {
-      //     console.log(response);
-      //    response : idPartie + nom de la partie + Pseudo + profil master
-      //     this.$router.push("/en fonction du template");
-      //   })
-      //   .catch(error => {
-      //     console.log(error);
-      //   })
+        // console.log(newPartie)
 
-    // test ====================================================
-    console.log(newPartie)
-    console.log(this.templateChoice)
+    // requete avec Axios pour le back ====================================
+      axios
+        .post('http://localhost:8000/partie', newPartie)
+        .then((response) => {
+          console.log(response)
+          // console.log(response.data.partie)
+          // console.log(response.data._id)
+          const partieRes = response.data.partie
+          this.$store.commit('SET_NOMPARTIE', partieRes)
+          const idPartieRes = response.data._id
+          this.$store.commit('SET_IDPARTIE', idPartieRes)
 
-    // liens vers les pages en attendant la connexion avec le back => a supprimer ensuite ========
-    
-    if ( this.templateChoice == "neutre"){
-      this.$router.push({ name: 'Neutre', params: { id: this.partie }})
-    } else if ( this.templateChoice == "donjon"){
-      this.$router.push({ name: 'Donjon', params: { id: this.partie }})
-    } else if ( this.templateChoice == "warhammer"){
-      this.$router.push({ name: 'Warhammer', params: { id: this.partie }})
-    } else if ( this.templateChoice == "yams"){
-      this.$router.push({ name: 'Yam', params: { id: this.partie }})
-    } else {
-        this.$router.push('/error');
-    }
+          // lien vers le template choisi + id de la partie
+          if ( this.templateChoice == "neutre"){
+            this.$router.push({ name: 'Neutre', params: { id: idPartieRes }})
+          } else if ( this.templateChoice == "donjon"){
+            this.$router.push({ name: 'Donjon', params: { id: idPartieRes }})
+          } else if ( this.templateChoice == "warhammer"){
+            this.$router.push({ name: 'Warhammer', params: { id: idPartieRes }})
+          } else if ( this.templateChoice == "yams"){
+            this.$router.push({ name: 'Yam', params: { id: idPartieRes }})
+          } else {
+            this.$router.push('/error');
+          }
 
+        })
+        .catch(error => {
+          console.log(error);
+        })
 
       }
   },
   computed:{
-    ...mapState(['pseudoMaster'])
-  }
+    ...mapState(['pseudoMaster', 'idPseudo']),
     
+  }
+  
 };
 </script>
 

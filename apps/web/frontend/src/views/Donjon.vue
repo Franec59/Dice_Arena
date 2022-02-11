@@ -14,8 +14,8 @@
     <!--fin de template-->
     <div class="joueurs">
       <div class="nom_partie">
-        <h2>Nom de la partie</h2>
-        <h4 class="identifiant">{{ id }}</h4>
+        <h2>{{ nomPartie }}</h2>
+        <h4 class="identifiant">{{ idPartie }}</h4>
       </div>
       <div class="liste_joueurs">
         <h2 class="joueurs">Joueurs inscrits sur la partie</h2>
@@ -36,8 +36,8 @@
 <script>
 import Btn_cloturer from "@/components/Btn_cloturer.vue";
 import Btn_quitter from "@/components/Btn_quitter.vue";
-// importer axios pour les requêtes vers le back
 // import axios from 'axios';
+import { mapState } from 'vuex'
 
 export default {
   name: "Donjon",
@@ -50,30 +50,34 @@ export default {
       profil:""
     }
   },
-  props: ['id'],
-  created() {
-    console.log(this.id);
-  },
-  methods:{
-      templatePartie() {
-    // requete avec Axios pour le back
-    //===============================================
-      // axios.get('http://...., idPartie)
-      //   .then(response => {
-      //     console.log(response);
-      //    response : idPartie + nom de la partie + liste des joueurs ( pseudos) + profil master et joueur
-      //     this.$router.push("/en fonction du template");
-      //   })
-      //   .catch(error => {
-      //     console.log(error);
-      //   })
-      }
-  },
+  // props: ['id'],
+  // created() {
+  //   console.log(this.id);
+  // },
+
+
+  // mounted:{
+     
+    // requete avec Axios pour le back =================================================
+  //     axios.get('http://...., idPartie)
+  //       .then(response => {
+  //         console.log(response);
+  //       })
+  //       .catch(error => {
+  //         console.log(error);
+  //       })
+      
+  // },
 
 mounted (){
     // pour tester les bouton cloturer ou quitter en attendant le retour du back
     // this.profil = "master"
-    this.profil = "joueur"
+    this.profil = this.$store.state.profile
+    console.log(this.profil)
+  },
+computed:{
+    ...mapState(['nomPartie', 'idPartie'])
+    
   }
 };
 </script>
