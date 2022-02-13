@@ -43,51 +43,42 @@ export default {
   },
   methods:{
       joinPartie() {
-        const idPartie = {
-            idPartie : this.idPartie,
-        }
-    // requete post by id ou by name avec Axios pour le back
-    //=====================================================
+        // const idJoinPartie = {
+        //     idPartie : this.idPartie,
+        // }
+    // requete get by id partie ou by name partie pour récupérer idpartie + template
+    //===============================================================================
 
-    // get => recupérer ton pseudo
-
-      // axios.post('http://...., idPartie )
+      // axios.get('http://localhost:8000/partie, this.idPartie )
       //   .then(response => {
-      //     this.partie = response.data
-       //     response data => data.idPartie + data.nom_de_la_partie + data.pseudo + data.profil joueur
-      //     console.log(response.data); 
-      //     this.$router.push("/en fonction du template");
+      //     console.log(response.data);
+            // const idPartieRun = response.data._id
+            // const templateRun = response.data.template
+
+      // lien vers la partie en cour avec l'id et le template récupéré depuis le backend
+        // if (this.idPartie == idPartieRun){
+        //   this.$router.push({ name: templateRun, params: { id: idPartieRun }})
+        // }else {
+        //   alert("Le nom ou N° de partie ne correspond pas à une partie en cours !");
+        // }
+
       //   })
       //   .catch(error => {
       //     console.log(error);
       //   })
 
-      //get id partie pour être connecté à la partie
-
-    // test ====================================================
-    console.log(idPartie)
-    
-    // liens vers les pages en attendant la connexion avec le back => a supprimer ensuite ========
-    //dataIdPartie => id de la partie venant du backend ( bdd )
-    const dataIdPartieNeutre = "n214"
-    const dataIdPartieWh = "wh18"
-    const dataIdPartieDd = "add12"
-    
-    if ( this.idPartie == dataIdPartieNeutre ){
-      this.$router.push({ name: 'Neutre', params: { id: dataIdPartieNeutre }})
-    }
-    else if ( this.idPartie == dataIdPartieWh){
-      this.$router.push({ name: 'Warhammer', params: { id: dataIdPartieWh }})
-    } 
-    else if ( this.idPartie == dataIdPartieDd){
-      this.$router.push({ name: 'Donjon', params: { id: dataIdPartieDd }})
-    } else {
+    // lien vers la partie avec l'id en attendant le debug de get ( a supprimer ensuite )
+    console.log("store :", this.$store.state.idPartie)
+    console.log("id saisie :", this.idPartie)
+      if (this.idPartie == this.$store.state.idPartie){
+        this.$router.push({ name: this.$store.state.template, params: { id: this.$store.state.idPartie }})
+      }else {
         this.$router.push('/error');
-    }
+      }
       }
   },
 computed:{
-    ...mapState(['pseudoMaster']),
+    ...mapState(['pseudoMaster', 'template']),
     
   }
     

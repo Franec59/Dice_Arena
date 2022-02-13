@@ -19,11 +19,11 @@
                         <p>Choix du thème</p>
                         <select class="inputbox" name="template" id="template" required v-model="templateChoice">
                             <option value="">-- Matrice de jeu --</option>
-                            <option value="neutre">Neutre</option>
-                            <option value="donjon">Donjon & Dragon</option>
-                            <option value="warhammer">Warhammer 40k</option>
-                            <option value="yams">Partie de Yam's</option>
-                            <option value="cyperpunk">Cyberpunk (jdr)</option>
+                            <option value="Neutre">Neutre</option>
+                            <option value="Donjon">Donjon & Dragon</option>
+                            <option value="Warhammer">Warhammer 40k</option>
+                            <option value="Yam">Partie de Yam's</option>
+                            <option value="Cyperpunk">Cyberpunk (jdr)</option>
                         </select>
                         <Btn_valider />
                     </form>
@@ -51,8 +51,6 @@ export default {
           partie :"",
           templateChoice : "",
           // avatar : "../assets/images/avatar_g.png"
-          // idPseudo : ""
-          
       }
   },
   
@@ -60,34 +58,34 @@ export default {
       createPartie() {
         const newPartie = {
             partie : this.partie,
+            template : this.templateChoice
         }
-        // console.log(newPartie)
+        console.log(newPartie)
 
     // requete avec Axios pour le back ====================================
       axios
         .post('http://localhost:8000/partie', newPartie)
         .then((response) => {
           console.log(response)
-          // console.log(response.data.partie)
-          // console.log(response.data._id)
+          console.log("db :", response.data.partie)
+          console.log("db :", response.data._id)
+          console.log("db :", response.data.template)
+
           const partieRes = response.data.partie
           this.$store.commit('SET_NOMPARTIE', partieRes)
+
           const idPartieRes = response.data._id
           this.$store.commit('SET_IDPARTIE', idPartieRes)
 
+          const templateRes = response.data.template
+          this.$store.commit('SET_TEMPLATE', templateRes)
+
           // lien vers le template choisi + id de la partie
-          if ( this.templateChoice == "neutre"){
-            this.$router.push({ name: 'Neutre', params: { id: idPartieRes }})
-          } else if ( this.templateChoice == "donjon"){
-            this.$router.push({ name: 'Donjon', params: { id: idPartieRes }})
-          } else if ( this.templateChoice == "warhammer"){
-            this.$router.push({ name: 'Warhammer', params: { id: idPartieRes }})
-          } else if ( this.templateChoice == "yams"){
-            this.$router.push({ name: 'Yam', params: { id: idPartieRes }})
-          } else {
+          if (idPartieRes && templateRes){
+            this.$router.push({ name: templateRes, params: { id: idPartieRes }})
+          }else {
             this.$router.push('/error');
           }
-
         })
         .catch(error => {
           console.log(error);
@@ -96,7 +94,7 @@ export default {
       }
   },
   computed:{
-    ...mapState(['pseudoMaster', 'idPseudo']),
+    ...mapState(['pseudoMaster', 'idPseudo', 'template']),
     
   }
   

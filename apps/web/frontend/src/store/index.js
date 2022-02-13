@@ -6,7 +6,8 @@ export default createStore({
     idPseudo : "0000",
     nomPartie : "",
     idPartie : "",
-    profile : ""
+    profile : "",
+    template :""
   },
   mutations: {
     SET_PSEUDO(state, pseudoRes){
@@ -23,6 +24,9 @@ export default createStore({
     },
     SET_PROFILE(state, profilRes){
       state.profile = profilRes
+    },
+    SET_TEMPLATE(state, templateRes){
+      state.template = templateRes
     }
   },
   actions: {

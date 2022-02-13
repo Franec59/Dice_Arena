@@ -22,7 +22,7 @@ export default {
       // const id = this.$store.state.idPseudo
       // console.log("depuis store", id)
       axios
-        .delete('http://localhost:8000/partie', { data: { id : this.$store.state.idPseudo }},
+        .delete('http://localhost:8000/partie', { data: this.$store.state.idPseudo },
           {
             headers: {
             'Content-Type': 'application/json;charset=UTF-8',

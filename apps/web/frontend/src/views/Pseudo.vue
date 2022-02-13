@@ -76,20 +76,13 @@ export default {
         pseudo : this.pseudo,
         profil : this.profilChoice
       };
-      //test connexion vers le back ================================================
-      // axios
-      //   .get('http://192.168.1.15:80/pseudo')
-      //   .then((response) => {
-      //     console.log(response);
-      //     this.$router.push("/createPartie");
-      //   })
-      //   .catch(error => {
-      //     console.log(error);
-      //   }),
-
+      
       //requete axios vers le backend ===============================================
+      axios.defaults.baseURL = 'http://localhost:8000/parties';
+      axios.defaults.headers.post['Content-Type'] ='application/json;charset=utf-8';
+      axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
       axios
-        .post('http://localhost:8000/partie', newPseudo)
+        .post('http://localhost:8000/partie', newPseudo )
         .then((response) => {
           console.log(response)
           // console.log(response.data.pseudo)
