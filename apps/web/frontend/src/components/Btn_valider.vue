@@ -7,11 +7,7 @@ export default {
   props: {
     msg: String
   },
-  methods:{
-    goToPseudo: function() {
-      this.$router.push('/pseudo') 
-    }
-  }
+  
 }
 </script>
 

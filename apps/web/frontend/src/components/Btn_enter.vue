@@ -1,5 +1,5 @@
 <template>
-  <div class="btn-enter" v-on:click.prevent="goToPseudo()">
+  <div class="btn-enter" v-on:click.prevent="goToChoix()">
     <a href="" class="btn">
       <svg width="277" height="62">
         <defs>
@@ -30,8 +30,8 @@ export default {
     msg: String
   },
   methods:{
-    goToPseudo: function() {
-      this.$router.push('/pseudo') 
+    goToChoix: function() {
+      this.$router.push('/choix') 
     }
   }
 }

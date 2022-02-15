@@ -1,10 +1,35 @@
 <template>
   <div class="about">
-    <h1>nouveau template</h1>
+    <h1>page de test</h1>
+    <button v-on:click.prevent="modifier()">modifier</button>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
+export default {
+  name: "About",
+computed:{
+    ...mapState(['idPartie', 'profil']),
+    
+  },
+mounted (){
+  console.log("id de la partie :", this.$store.state.idPartie)
+  console.log("profil du joueur :", this.$store.state.profil)
+  console.log("id du pseudo :" , this.$store.state.idPseudo)
+
+},
+methods:{
+  modifier: function(){
+    this.$store.commit("SET_IDPARTIE", null);
+    this.$store.commit("SET_PROFIL", "doudou");
+  }
+}
+
+  
+}//fin de about
+
 // {
 //     headers: {
 //         'Content-Type': 'application/json;charset=UTF-8',
@@ -32,6 +57,16 @@
     // } else {
     //     this.$router.push('/error');
     // }
+
+// lien vers le template choisi + id de la partie
+          // if (idPartieRes && templateRes) {
+          //   this.$router.push({
+          //     name: templateRes,
+          //     params: { id: idPartieRes },
+          //   });
+          // } else {
+          //   this.$router.push("/error");
+          // }
 
 
 

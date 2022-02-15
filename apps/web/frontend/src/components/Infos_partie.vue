@@ -44,6 +44,10 @@ export default {
     console.log(this.profil)
      
     //requete GET pour récupérer la liste des joueurs ================================================
+      axios.defaults.baseURL = 'http://localhost:8000/partie';
+      axios.defaults.headers.post['Content-Type'] ='application/json;charset=utf-8';
+      axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
+      
       axios
       .get('http://localhost:8000/partie',
       {

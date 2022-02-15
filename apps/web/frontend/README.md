@@ -42,3 +42,9 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+### Notes persos
+utilisation de vuex-persistedstate pour la persistence des données dans le store
+https://www.npmjs.com/package/vuex-persistedstate
+
+
+

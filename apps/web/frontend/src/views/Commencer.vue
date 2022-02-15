@@ -4,27 +4,22 @@
         <div class="creation">
             <div class="card">
                 <div class="leftside">
-                    <h1>Profil Master</h1>
-                    <h2 class="left-name">"{{ pseudoMaster }}"</h2>
+                    <h1>Bienvenue</h1>
+                    <h2 class="left-name">" {{ monPseudo }} "</h2>
                     <!-- avatar du joueur -->
                     <!-- <img v-bind:src="avatar" class="product" alt="avatar_joueur" /> -->
                     <img src="../assets/images/avatar_g.png" class="product" alt="avatar_joueur" />
                     <Btn_supprimer />
                 </div>
                 <div class="rightside1">
-                    <form id="form_create_partie" v-on:submit.prevent="createPartie()" method="post">
-                        <h1>Créer une partie</h1>
-                        <p>Nommez votre partie !</p>
-                        <input type="text" class="inputbox" name="partie" placeholder="Nom de la partie" v-model="partie" required />
-                        <p>Choix du thème</p>
-                        <select class="inputbox" name="template" id="template" required v-model="templateChoice">
-                            <option value="">-- Matrice de jeu --</option>
-                            <option value="Neutre">Neutre</option>
-                            <option value="Donjon">Donjon & Dragon</option>
-                            <option value="Warhammer">Warhammer 40k</option>
-                            <option value="Yam">Partie de Yam's</option>
-                            <option value="Cyperpunk">Cyberpunk (jdr)</option>
-                        </select>
+                    <form id="form_create_partie" v-on:submit.prevent="goToPartie()">
+                        <h1>Prêt à entrer dans la partie suivante ?</h1>
+                        <p>Nom de la partie :</p>
+                        <input type="text" class="inputbox" name="partie" v-bind:value="nomPartie" />
+                        <p>N° de la partie :</p>
+                        <input type="text" class="inputbox" name="numero" v-bind:value="numero" />
+                        <p>Thème choisi :</p>
+                        <input type="text" class="inputbox" name="theme" v-bind:value="theme" />
                         <Btn_valider />
                     </form>
                 </div>
@@ -38,65 +33,67 @@
 import Btn_valider from "@/components/Btn_valider.vue";
 import Btn_supprimer from "@/components/Btn_supprimer.vue";
 import axios from 'axios';
-import { mapState } from 'vuex'
 
 export default {
-  name: "CreatePartie",
+  name: "Commencer",
   components: {
       Btn_valider,
       Btn_supprimer
   },
-  data(){
-      return {
-          partie :"",
-          templateChoice : "",
-          // avatar : "../assets/images/avatar_g.png"
-      }
+  data() {
+    return {
+      monPseudo: "",
+      nomPartie : "",
+      numero : "",
+      theme : ""
+    };
   },
   
-  methods:{
-      createPartie() {
-        const newPartie = {
-            partie : this.partie,
-            template : this.templateChoice
-        }
-        console.log(newPartie)
-
-    // requete avec Axios pour le back ====================================
+  mounted (){
+      const idJoueur = this.$store.state.idPseudo
+      const idPartie = this.$store.state.idPartie
+    // requete GET pseudo du joueur ====================================
       axios
-        .post('http://localhost:8000/partie', newPartie)
+        .get('http://localhost:8000/joueur/' + `${idJoueur}`)
         .then((response) => {
-          console.log(response)
-          console.log("db :", response.data.partie)
-          console.log("db :", response.data._id)
-          console.log("db :", response.data.template)
+          console.log("joueur :", response)
 
-          const partieRes = response.data.partie
-          this.$store.commit('SET_NOMPARTIE', partieRes)
-
-          const idPartieRes = response.data._id
-          this.$store.commit('SET_IDPARTIE', idPartieRes)
-
-          const templateRes = response.data.template
-          this.$store.commit('SET_TEMPLATE', templateRes)
-
-          // lien vers le template choisi + id de la partie
-          if (idPartieRes && templateRes){
-            this.$router.push({ name: templateRes, params: { id: idPartieRes }})
-          }else {
-            this.$router.push('/error');
-          }
+          this.monPseudo = response.data.pseudo
+          
         })
         .catch(error => {
           console.log(error);
         })
 
-      }
+    // requete GET partie en cours ====================================
+      axios
+        .get('http://localhost:8000/mapartie/' + `${idPartie}`)
+        .then((response) => {
+          console.log("mapartie :", response)
+
+          this.nomPartie = response.data.partie
+          this.numero = response.data._id
+          this.theme = response.data.template
+          
+        })
+        .catch(error => {
+          console.log(error);
+        })
+
   },
-  computed:{
-    ...mapState(['pseudoMaster', 'idPseudo', 'template']),
-    
-  }
+methods:{
+    goToPartie : function (){
+        //lien vers le template choisi + id de la partie
+          if (this.numero && this.theme) {
+            this.$router.push({
+              name: this.theme,
+              params: { id: this.numero },
+            });
+          } else {
+            this.$router.push("/error");
+          }
+    }
+}
   
 };
 </script>

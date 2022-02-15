@@ -4,7 +4,7 @@
     <div class="mainscreen">
       <div class="card">
         <div class="leftside">
-          <h1>Créer votre pseudo</h1>
+          <h1>Créer ou rejoindre une partie !</h1>
           <!-- logo de xavier -->
           <img
             src="../assets/images/logo_da.png"
@@ -13,25 +13,18 @@
           />
         </div>
         <div class="rightside">
-          <form id="form" v-on:submit.prevent="createPseudo()" method="post">
-            <p>Qui ose entrer dans l'arène ?</p>
-            <input
-              type="text"
-              class="inputbox"
-              name="pseudo"
-              placeholder="Entrez votre pseudo"
-              required
-              v-model="pseudo"
-            />
-            <div class="avartar_container">
-              <img
-                src="../assets/images/avatar_g.png"
-                class="avatar"
-                alt="avatar_garçon"
-              />
-              <p>Quel avartar te définit le mieux ? (optionnel)</p>
+          <form id="form" v-on:submit.prevent="monChoix()">
+            <div class="check">
+                <h2 class="definir">A peine entré dans l'arène, vous devez déjà choisir votre destin :</h2>
+                    <p class="master">"Profil Master"</p>
+                    <h3 class="profil">Je souhaite créer une partie !
+                        <input type="radio" class="box" name="choix" value="master" v-model="monProfil" required/>
+                    </h3>
+                    <p class="joueur">"Profil Joueur"</p>
+                    <h3 class="profil">Je souhaite rejoindre une partie !
+                        <input type="radio" class="box" name="choix" value="joueur" v-model="monProfil" required />
+                    </h3>
             </div>
-            <input type="file" class="inputbox" name="avatar" id="avatar" />
             <Btn_valider />
           </form>
         </div>
@@ -42,50 +35,31 @@
 
 <script>
 import Btn_valider from "@/components/Btn_valider.vue";
-import axios from 'axios';
 
 export default {
-  name: "Pseudo",
+  name: "Choix",
   components: {
     Btn_valider,
   },
   data(){
     return{
-      pseudo: null
+      monProfil: ""
+  
     }
       
   },
   methods:{
-
-    createPseudo() {
-      const newPseudo = {
-        pseudo : this.pseudo,
-        profil : this.$store.state.profil,
-        numero_partie : this.$store.state.idPartie
-      };
-      console.log("verif newpseudo : ", newPseudo)
-
-      //requete axios vers le backend ===============================================
-      axios.defaults.baseURL = 'http://localhost:8000/partie';
-      axios.defaults.headers.post['Content-Type'] ='application/json;charset=utf-8';
-      axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
-
-      axios
-        .post('http://localhost:8000/partie', newPseudo )
-        .then((response) => {
-          console.log(response)
-
-          // information pour le store =============
-          const idPseudoRes = response.data._id;
-          this.$store.commit("SET_IDPSEUDO", idPseudoRes);
-
-          this.$router.push("/commencer")
-        })
-        .catch(error => {
-          console.log(error);
-          this.$router.push('/error');
-        })
-    }//fin de createpseudo
+    //fonction choix : créer une partie ou rejoindre une partie ============================
+    monChoix() {
+    // redirection en fonction de monProfil =============================
+    if ( this.monProfil == "master"){
+      this.$router.push("/creerPartie")
+    } else if ( this.monProfil == "joueur"){
+      this.$router.push("/joinPartie");
+    } else {
+        this.$router.push('/error');
+    }
+    }//fin de monChoix
   
   }//fin de methods
   
@@ -133,27 +107,6 @@ export default {
   height: 20em;
 }
 
-.avatar {
-  object-fit: cover;
-  width: 2em;
-  height: 2em;
-  border-radius: 100%;
-  border: 1px solid whitesmoke;
-  background-color: #030303;
-}
-
-.avartar_container {
-  display: flex;
-  justify-content: left;
-  margin-top: 1rem;
-}
-
-.avartar_container p {
-  position: relative;
-  bottom: 0.5rem;
-  margin-left: 0.2rem;
-}
-
 .rightside {
   background-image: url(../assets/images/d-background2.png);
   background-size: cover;
@@ -172,6 +125,11 @@ p {
   color: white;
   text-shadow: 2px 2px 2px black;
   background: rgb(0, 0, 0, 0.1);
+}
+
+h2 {
+  color: whitesmoke;
+  text-shadow: 4px 4px 8px black;
 }
 
 h1 {
@@ -194,6 +152,33 @@ h1 {
   background: whitesmoke;
 }
 
+.check{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.profil{
+    background: whitesmoke;
+    border-radius: 10px 10px 10px 10px;
+    color: #000000;
+    height: 2rem;
+    padding-top: 0.8rem;
+    padding-left: 0.8rem;
+    padding-right: 0.8rem;
+    display: flex;
+    justify-content: space-between;
+    margin-top:-0.8rem;
+    
+}
+
+.definir{
+    margin-bottom: -0.2rem;
+    color: whitesmoke;
+    text-shadow: 4px 4px 4px black;
+    margin-bottom: 1.5rem;
+}
+
 .box{
     position: relative;
     height: 1.5rem;
@@ -201,12 +186,13 @@ h1 {
     bottom: 0.2rem;
 }
 
-/* .master{
+.master{
     color:rgb(11, 226, 11);
 }
 .joueur{
     color:rgb(104, 197, 240);
-} */
+    margin-top: 1.5rem;
+}
 
 /* partie responsive ================================================== */
 @media only screen and (max-width: 900px) {

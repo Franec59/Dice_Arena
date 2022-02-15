@@ -1,40 +1,20 @@
 <template>
-  <div class="btn from-right" v-on:click.prevent="deletePseudo()">Supprimer mon pseudo</div>
+  <div class="btn from-right" v-on:click.prevent="annuler()">Annuler mon choix</div>
 </template>
 
 <script>
-import axios from 'axios';
-import { mapState } from 'vuex'
 
 export default {
-  name: "Btn_supprimer",
+  name: "Btn_annuler",
   props: {
     msg: String,
   },
-  
-  methods: {
-    deletePseudo: function () {
-      const idDeleted = this.$store.state.idPseudo
-      console.log("store : ", this.$store.state.idPseudo)
 
-      axios.defaults.baseURL = 'http://localhost:8000/partie';
-      axios.defaults.headers.post['Content-Type'] ='application/json;charset=utf-8';
-      axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
-      axios
-        .delete('http://localhost:8000/partie/' + `${idDeleted}`)
-        .then((response) => {
-          console.log(response)
-          this.$router.push("/pseudo");
-        })
-        .catch(error => {
-          console.log(error);
-        })
+  methods: {
+    annuler: function () {
+      this.$router.push('/choix')
     },
   },
-  computed:{
-    ...mapState(['idPseudo'])
-    
-  }
 };
 </script>
 

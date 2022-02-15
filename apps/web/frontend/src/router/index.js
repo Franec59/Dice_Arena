@@ -8,27 +8,34 @@ const routes = [
     component: Home
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  },
-  {
     path: '/pseudo',
     name: 'Pseudo',
     component: () => import(/* webpackChunkName: "Pseudo" */ '../views/Pseudo.vue')
   },
   {
-    path: '/createPartie',
-    name: 'CreatePartie',
-    component: () => import(/* webpackChunkName: "CreatePartie" */ '../views/CreatePartie.vue')
+    path: '/choix',
+    name: 'Choix',
+    component: () => import(/* webpackChunkName: "Pseudo" */ '../views/Choix.vue')
+  },
+  {
+    path: '/creerPartie',
+    name: 'Creer_partie',
+    component: () => import(/* webpackChunkName: "Pseudo" */ '../views/Creer_partie.vue')
+  },
+  {
+    path: '/commencer',
+    name: 'Commencer',
+    component: () => import(/* webpackChunkName: "CreatePartie" */ '../views/Commencer.vue')
   },
   {
     path: '/joinPartie',
     name: 'JoinPartie',
     component: () => import(/* webpackChunkName: "JoinPartie" */ '../views/JoinPartie.vue')
+  },
+  {
+    path: '/about',
+    name: 'About',
+    component: () => import(/* webpackChunkName: "JoinPartie" */ '../views/About.vue')
   },
   {
     path: '/neutre/:id',
