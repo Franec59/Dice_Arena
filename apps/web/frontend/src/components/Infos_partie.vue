@@ -2,14 +2,19 @@
     <div class="joueurs">
       <div class="nom_partie">
         <h2>{{ nomPartie }}</h2>
-        <h4 class="identifiant">{{ idPartie }}</h4>
+        <h4 class="identifiant">N° : {{ numeroPartie }}</h4>
       </div>
       <div class="liste_joueurs">
         <h2 class="joueurs">Joueurs inscrits sur la partie</h2>
         <ol>
-          <li>nom joueur 1</li>
-          <li>nom joueur 2</li>
-          <li>nom joueur 3</li>
+          <li v-for="joueur in joueurs" :key="joueur">
+              <img
+                src="../assets/images/avatar_g.png"
+                class="avatar"
+                alt="avatar_garçon"
+              />
+            {{ joueur.pseudo }} ( {{ joueur.profil }} )
+          </li>
         </ol>
       </div>
       <Btn_cloturer v-if="profil==='master'" />
@@ -22,7 +27,6 @@
 import Btn_cloturer from "@/components/Btn_cloturer.vue";
 import Btn_quitter from "@/components/Btn_quitter.vue";
 import axios from 'axios';
-import { mapState } from 'vuex'
 
 export default {
   name: 'Infos_partie',
@@ -35,33 +39,53 @@ export default {
   },
   data() {
     return {
-      profil:""
+      nomPartie : "",
+      numeroPartie : "",
+      profil : "",
+      joueurs : ""
     }
   },
   mounted (){
-
-    this.profil = this.$store.state.profile
-    console.log(this.profil)
+    const idJoueur = this.$store.state.idPseudo
+    this.idPartie = this.$store.state.idPartie
+    console.log("idpartie from store :", this.idPartie)
      
-    //requete GET pour récupérer la liste des joueurs ================================================
-      axios.defaults.baseURL = 'http://localhost:8000/partie';
-      axios.defaults.headers.post['Content-Type'] ='application/json;charset=utf-8';
-      axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
-      
+    // requete GET partie en cours ====================================
       axios
-      .get('http://localhost:8000/partie',
-      {
-    headers: {
-        'Content-Type': 'application/json;charset=UTF-8',
-        'Access-Control-Allow-Origin': '*',
-        "Accept": "application/json",
-        'Access-Control-Allow-Methods' : "POST, GET, OPTIONS, DELETE, PUT",
-        'Access-Control-Allow-Headers': "append,delete,entries,foreach,get,has,keys,set,values,Authorization"
-    },
-      }
+        .get('http://localhost:8000/mapartie/' + `${this.idPartie}`)
+        .then((response) => {
+          console.log("mapartie :", response)
+
+          this.nomPartie = response.data.partie
+          this.numeroPartie = response.data._id
+          
+        })
+        .catch(error => {
+          console.log(error);
+        })
+
+    // requete GET du joueur en cours ====================================
+      axios
+        .get('http://localhost:8000/joueur/' + `${idJoueur}`)
+        .then((response) => {
+          console.log("joueur :", response)
+
+          this.monPseudo = response.data.pseudo
+          this.profil = response.data.profil
+          
+        })
+        .catch(error => {
+          console.log(error);
+        })
+
+    //requete GET pour récupérer la liste des joueurs ================================================
+      axios
+      .get('http://localhost:8000/liste/' + `${this.idPartie}`,
       )
       .then(response => {
-          console.log(response);
+          console.log("liste des joueurs :", response);
+          this.joueurs = response.data
+          console.log("tableau des joueurs :", response.data)
         })
       .catch(error => {
           console.log(error);
@@ -69,10 +93,6 @@ export default {
       
   },
 
-computed:{
-    ...mapState(['nomPartie', 'idPartie'])
-    
-  }
 }//fin de export default
 </script>
 
@@ -126,6 +146,17 @@ li{
     color: whitesmoke;
     text-shadow: 2px 2px 4px black;
     padding-left: 1.5rem;
+}
+
+.avatar {
+  object-fit: cover;
+  width: 2em;
+  height: 2em;
+  border-radius: 100%;
+  border: 1px solid whitesmoke;
+  background-color: #030303;
+  position: relative;
+  top:0.7rem;
 }
 
 /* Partie responsive ================================================ */

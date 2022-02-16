@@ -62,7 +62,7 @@ export default {
   width: 100%;
   min-height: 10rem;
   background-image: url(../assets/images/NewLogowh.png);
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
   margin-top: 2rem;
   margin-left: 1rem;
