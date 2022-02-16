@@ -17,7 +17,8 @@ node --version : v16.13.2
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### pour lancer l'application
+depuis le dossier frontend
 ```
 npm run serve
 ```

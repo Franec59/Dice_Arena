@@ -2,7 +2,7 @@
     <div class="joueurs">
       <div class="nom_partie">
         <h2>{{ nomPartie }}</h2>
-        <h4 class="identifiant">N° : {{ numeroPartie }}</h4>
+        <h4 class="identifiant">N° : {{ numeroPartie }} <i class="fa-regular fa-copy"></i></h4>
       </div>
       <div class="liste_joueurs">
         <h2 class="joueurs">Joueurs inscrits sur la partie</h2>
@@ -157,6 +157,13 @@ li{
   background-color: #030303;
   position: relative;
   top:0.7rem;
+}
+
+.fa-copy{
+  margin-left: 2rem;
+  color: whitesmoke;
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 /* Partie responsive ================================================ */

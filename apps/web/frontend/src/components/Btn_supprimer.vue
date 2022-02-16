@@ -4,7 +4,6 @@
 
 <script>
 import axios from 'axios';
-import { mapState } from 'vuex'
 
 export default {
   name: "Btn_supprimer",
@@ -31,10 +30,7 @@ export default {
         })
     },
   },
-  computed:{
-    ...mapState(['idPseudo'])
-    
-  }
+  
 };
 </script>
 

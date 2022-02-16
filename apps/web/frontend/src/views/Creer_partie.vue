@@ -86,7 +86,7 @@ export default {
           console.log(response);
           console.log("retour db :", response.data._id);
 
-        // information pour le store =============
+        // renseigner le N° de partie et le profil dans le store =============
           const idPartieRes = response.data._id;
           this.$store.commit("SET_IDPARTIE", idPartieRes);
 

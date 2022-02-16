@@ -5,6 +5,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: "Btn_cloturer",
   props: {
@@ -12,9 +14,21 @@ export default {
   },
   methods: {
     cloture: function () {
-      confirm("Vous allez cloturer définitivement cette partie !");
-      this.$router.push("/");
-      //requête back pour effacer les données dans la BDD
+      confirm("Voulez vous cloturer définitivement cette partie ?");
+      
+      //requête back pour effacer les données dans la BDD ===================
+      const idPartie = this.$store.state.idPartie
+      console.log("store : ", this.$store.state.idPartie)
+
+      axios
+        .delete('http://localhost:8000/deletepartie/' + `${idPartie}`)
+        .then((response) => {
+          console.log(response)
+          this.$router.push("/");
+        })
+        .catch(error => {
+          console.log(error);
+        })
     },
   },
 };

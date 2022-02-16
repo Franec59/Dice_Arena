@@ -7,7 +7,6 @@
                     <h1>Bienvenue</h1>
                     <h2 class="left-name">" {{ monPseudo }} "</h2>
                     <!-- avatar du joueur -->
-                    <!-- <img v-bind:src="avatar" class="product" alt="avatar_joueur" /> -->
                     <img src="../assets/images/avatar_g.png" class="product" alt="avatar_joueur" />
                     <Btn_supprimer />
                 </div>
@@ -16,7 +15,7 @@
                         <h1>Prêt à entrer dans la partie suivante ?</h1>
                         <p>Nom de la partie :</p>
                         <input type="text" class="inputbox" name="partie" v-bind:value="nomPartie" />
-                        <p>N° de la partie :</p>
+                        <p>N° de la partie :<i class="fa-solid fa-copy"></i></p>
                         <input type="text" class="inputbox" name="numero" v-bind:value="numero" />
                         <p>Thème choisi :</p>
                         <input type="text" class="inputbox" name="theme" v-bind:value="theme" />
@@ -186,6 +185,14 @@ h1 {
   font-weight: 500;
   outline:none;
   background: whitesmoke;
+}
+
+.fa-copy{
+  margin-left: 1.5rem;
+  color: whitesmoke;
+  text-shadow: 2px 2px 4px black;
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 /* Partie responsive ======================================*/

@@ -5,6 +5,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: "Btn_quitter",
   props: {
@@ -12,9 +14,25 @@ export default {
   },
   methods: {
     quitter: function () {
-      confirm("Vous allez quitter définitivement cette partie !");
-      this.$router.push("/");
-      //requête back pour effacer les données dans la BDD
+      let text = "Voulez vous quitter définitivement cette partie ?";
+      if(confirm(text) == true){
+      //requête back pour effacer ce joueur dans la BDD ==================
+      const idDeleted = this.$store.state.idPseudo
+      console.log("store : ", this.$store.state.idPseudo)
+
+      axios
+        .delete('http://localhost:8000/partie/' + `${idDeleted}`)
+        .then((response) => {
+          console.log(response)
+          this.$router.push("/");
+        })
+        .catch(error => {
+          console.log(error);
+          this.$router.push("/");
+        })
+      } else {
+        console.log("annuler")
+      }
     },
   },
 };
