@@ -41,6 +41,7 @@
               <option value="Neutre">Neutre</option>
               <option value="Donjon">Donjon & Dragon</option>
               <option value="Warhammer">Warhammer 40k</option>
+              <option value="Craps">Partie de craps</option>
               <option value="Yam">Partie de Yam's</option>
               <option value="Cyperpunk">Cyberpunk (jdr)</option>
             </select>

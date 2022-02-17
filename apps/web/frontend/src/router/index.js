@@ -67,6 +67,13 @@ const routes = [
 
   },
   {
+    name: 'Craps',
+    path: '/craps/:id',
+    component: () => import(/* webpackChunkName: "Warhammer" */ '../views/Craps.vue'),
+    props: true
+
+  },
+  {
     // path: '/:catchAll(.*)',
     path: '/:pathMatch(.*)*',
     name: 'Notfound',
