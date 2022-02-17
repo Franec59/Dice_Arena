@@ -1,9 +1,18 @@
 import random
 
 class Dungeon():
-    def __init__(self) -> None:
-        pass
+    def __init__(self, selection):
+        self.set_selection(selection)
+        
+#setter/getter
+
+    def set_selection(self, selection):
+        self.__selection=selection
     
+    def get_black_selection(self):
+        return self.__selection
+    
+# Fonction
     def attaque(self):
         bonus=int(input("bonus d'attaque: "))
         ca=int(input("classe d'armure adverse: "))

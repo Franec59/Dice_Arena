@@ -5,7 +5,7 @@ services:
     app:
         container_name: app
         image: python:3.8-buster
-        #build: ./docker/
+        build: ./docker/
         ports:
             - "80:80"
         volumes:

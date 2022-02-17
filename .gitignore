@@ -1,2 +1,7 @@
 variable.tf
 key.json
+./environements
+./terraform
+.terraform.lock.hcl
+./env
+./git

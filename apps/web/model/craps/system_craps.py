@@ -2,9 +2,18 @@ import random
 from unittest import result
 
 class Craps():
-    def __init__(self) -> None:
-        pass
+    def __init__(self, selection):
+        self.set_selection(selection)
+        
+#setter/getter
+
+    def set_selection(self, selection):
+        self.__selection=selection
     
+    def get_black_selection(self):
+        return self.__selection
+    
+# Fonction
     def diceNumber(self):
         _=input("Roll the dice")
         dice1=random.randrange(1, 7)                    #Les deux ligne ici a modifier avec le système de dès
