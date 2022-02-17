@@ -14,7 +14,8 @@ export default {
   },
   methods: {
     cloture: function () {
-      confirm("Voulez vous cloturer définitivement cette partie ?");
+      let text = "Voulez vous cloturer définitivement cette partie ?";
+      if(confirm(text) == true){
       
       //requête back pour effacer les données dans la BDD ===================
       const idPartie = this.$store.state.idPartie
@@ -28,7 +29,11 @@ export default {
         })
         .catch(error => {
           console.log(error);
+          this.$router.push("/");
         })
+      } else {
+        console.log("Cloture annulée")
+      }
     },
   },
 };

@@ -1,5 +1,5 @@
 <template>
-  <div class="btn from-right" v-on:click.prevent="annuler()">Annuler mon choix</div>
+  <div class="btn from-right" v-on:click.prevent="annuler()">Annuler</div>
 </template>
 
 <script>

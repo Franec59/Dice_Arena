@@ -2,7 +2,10 @@
     <div class="joueurs">
       <div class="nom_partie">
         <h2>{{ nomPartie }}</h2>
-        <h4 class="identifiant">N° : {{ numeroPartie }} <i class="fa-regular fa-copy"></i></h4>
+        <h4 class="identifiant">N° : <span id="copyid">{{ numeroPartie }} </span> 
+          <button id="btn_copy" v-on:click="copyToClickBoard()">
+            <i class="fa-regular fa-copy"></i>
+            </button></h4>
       </div>
       <div class="liste_joueurs">
         <h2 class="joueurs">Joueurs inscrits sur la partie</h2>
@@ -92,7 +95,19 @@ export default {
         })
       
   },
-
+methods:{
+  //fonction pour copier coller l'id de la partie dans le press papier
+  copyToClickBoard : function (){
+    var content = document.getElementById('copyid').innerText;
+    navigator.clipboard.writeText(content)
+        .then(() => {
+        console.log("Text copied to clipboard :", content)
+    })
+        .catch(err => {
+        console.log('Something went wrong', err);
+    })
+}
+}
 }//fin de export default
 </script>
 
@@ -164,6 +179,16 @@ li{
   color: whitesmoke;
   width: 1.5rem;
   height: 1.5rem;
+}
+
+.fa-copy:hover{
+  transform: scale(1.4);
+  cursor: pointer;
+}
+
+#btn_copy{
+  background: transparent;
+  border: none;
 }
 
 /* Partie responsive ================================================ */

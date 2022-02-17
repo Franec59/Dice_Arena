@@ -31,7 +31,7 @@ export default {
           this.$router.push("/");
         })
       } else {
-        console.log("annuler")
+        console.log("Quitter la partie annulée")
       }
     },
   },

@@ -94,7 +94,7 @@ export default {
           this.$store.commit("SET_PROFIL", profilRes);
 
           //alert pour communiquer l'id de la partie
-          alert("Le n° de votre partie est : " + idPartieRes)
+          alert("Le n° de votre partie, à communiquer aux autres joueurs, est : " + idPartieRes + "  ( bouton copier/coller en page suivante )")
 
           // lien vers choix du pseudo =============
           this.$router.push("/pseudo");

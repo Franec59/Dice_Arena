@@ -40,6 +40,7 @@
 <script>
 import Btn_valider from "@/components/Btn_valider.vue";
 import Btn_annuler from "@/components/Btn_annuler.vue";
+import axios from "axios";
 
 export default {
   name: "JoinPartie",
@@ -55,9 +56,15 @@ export default {
 
   methods: {
     joinPartie() {
-      console.log("envoi de l'id partie au store :", this.numPartie);
+        // requete GET partie pour vérifier la partie en cours ====================================
+        let verif = this.numPartie
+      axios
+        .get('http://localhost:8000/mapartie/' + `${verif}`)
+        .then((response) => {
+          console.log("response.data :", response.data)
+          console.log("envoi de l'id partie au store :", this.numPartie);
 
-        // renseigner le N° de partie et le profil dans le store =============
+          // renseigner le N° de partie et le profil dans le store =============
         this.$store.commit("SET_IDPARTIE", this.numPartie);
         
         const profilRes = "joueur";
@@ -65,6 +72,13 @@ export default {
         
         // lien vers choix du pseudo =============
         this.$router.push("/pseudo");
+
+        })
+        .catch(error => {
+          console.log(error);
+          alert("Le N° : " + this.numPartie + " ne correspond à aucune partie en cours !")
+        })
+        
     },
   },
 };

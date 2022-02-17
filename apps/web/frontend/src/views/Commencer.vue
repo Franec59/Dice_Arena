@@ -11,15 +11,19 @@
                     <Btn_supprimer />
                 </div>
                 <div class="rightside1">
-                    <form id="form_create_partie" v-on:submit.prevent="goToPartie()">
+                    <!-- <form id="form_create_partie" v-on:submit.prevent="goToPartie()"> -->
                         <h1>Prêt à entrer dans la partie suivante ?</h1>
                         <p>Nom de la partie :</p>
                         <input type="text" class="inputbox" name="partie" v-bind:value="nomPartie" />
-                        <p>N° de la partie :<i class="fa-solid fa-copy"></i></p>
-                        <input type="text" class="inputbox" name="numero" v-bind:value="numero" />
+                        <p>N° de la partie :<button id="btn_copy" v-on:click="copyToClickBoard()"><i class="fa-solid fa-copy"></i></button></p>
+                        <input type="text" class="inputbox" id="copyid" name="numero" v-bind:value="numero" />
                         <p>Thème choisi :</p>
                         <input type="text" class="inputbox" name="theme" v-bind:value="theme" />
-                        <Btn_valider />
+                    <form id="form_create_partie" v-on:submit.prevent="goToPartie()">
+                        <div class="valider_annuler">
+                          <Btn_valider />
+                          <Btn_annuler />
+                        </div>
                     </form>
                 </div>
             </div>
@@ -31,13 +35,15 @@
 <script>
 import Btn_valider from "@/components/Btn_valider.vue";
 import Btn_supprimer from "@/components/Btn_supprimer.vue";
+import Btn_annuler from "@/components/Btn_annuler.vue";
 import axios from 'axios';
 
 export default {
   name: "Commencer",
   components: {
       Btn_valider,
-      Btn_supprimer
+      Btn_supprimer,
+      Btn_annuler
   },
   data() {
     return {
@@ -91,8 +97,19 @@ methods:{
           } else {
             this.$router.push("/error");
           }
-    }
+    },
+  //fonction pour copier coller l'id de la partie dans le press papier
+  copyToClickBoard : function (){
+    var content = document.getElementById('copyid').value;
+    navigator.clipboard.writeText(content)
+        .then(() => {
+        console.log("Text copied to clipboard :", content)
+    })
+        .catch(err => {
+        console.log('Something went wrong', err);
+    })
 }
+}// fin de methods
   
 };
 </script>
@@ -195,6 +212,22 @@ h1 {
   height: 1.5rem;
 }
 
+.fa-copy:hover{
+  transform: scale(1.4);
+  cursor: pointer;
+}
+
+.valider_annuler{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+#btn_copy{
+  background: transparent;
+  border: none;
+}
+
 /* Partie responsive ======================================*/
 
 @media only screen and (max-width: 900px) {
@@ -217,5 +250,15 @@ h1 {
 
 .rejoindre {
   margin-top: 3rem;
+}
+
+@media only screen and (max-width: 650px) {
+.valider_annuler{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
 }
 </style>
