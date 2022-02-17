@@ -1,0 +1,51 @@
+/*CSS du bouton entrez dans l arene */
+
+.btn-enter{
+    height:100%;
+    position: relative;
+    bottom:0.5rem;
+    margin-top: 5rem;
+   
+  }
+
+  .btn {
+      /* margin-top: calc(50% + 25px); */
+      position: relative;
+      display: inline-block;
+      width: 277px;
+      height: 50px;
+      font-size: 1em;
+      font-weight: bold;
+      line-height: 60px;
+      text-align: center;
+      cursor: pointer;
+      text-decoration:none;
+      letter-spacing: 0.045em;
+      color:wheat;
+  }
+  
+  .btn svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+  }
+  
+  .btn svg rect {
+      stroke: wheat;
+      stroke-width: 4;
+      stroke-dasharray: 353, 0;
+      stroke-dashoffset: 0;
+      -webkit-transition: all 600ms ease;
+      transition: all 600ms ease;
+  }
+  
+  /*fond derrière le texte*/
+  .btn span{
+      background: transparent;
+  }
+  
+  .btn:hover svg rect {
+      stroke-width: 4;
+      stroke-dasharray: 196, 543;
+      stroke-dashoffset: 437;
+  }

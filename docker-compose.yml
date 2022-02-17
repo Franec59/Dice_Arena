@@ -1,0 +1,32 @@
+version : "3.6"
+
+services:
+    
+    app:
+        container_name: app
+        image: python:3.8-buster
+        build: ./docker/
+        ports:
+            - "80:80"
+        volumes:
+            - ./apps/flask:/root/apps/flask:rw
+        # entrypoint: ["python3", "-u", "/root/apps/flask/app.py"]
+        # restart: always
+
+
+    mongo:
+        container_name: mongo
+        image: mongo:4.4.11-rc0-focal
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: root
+            MONGO_INITDB_ROOT_PASSWORD: password
+        volumes:
+            - mongo_volume:/data/db
+            - mongo_volume:/data/configdb
+        # ports:
+        #     - 27017:27017      
+        # restart: always
+
+volumes: 
+    mongo_volume:
+    mysql_volume:
