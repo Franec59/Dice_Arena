@@ -21,8 +21,8 @@
         </div>
         <div class="affiche_resultat" v-show="lepoint">
           <h3 v-show="current">Sur ce lancé, vous obtenez : {{dice1}} et {{dice2}} pour un total de {{currentPoint}}</h3>
-          <h3 v-show="newP">Sur ce lancé, vous obtenez : {{dice3}} et {{dice4}} pour un total de {{newPoint}}</h3>
           <h4>Vous devez faire le point à : {{currentPoint}}</h4>
+          <h3 v-show="newP">Sur ce lancé, vous obtenez : {{dice3}} et {{dice4}} pour un total de {{newPoint}}</h3>
           <div class="lancer" v-on:click.prevent="relancer()" v-show="bouton">
             <h3>Relancer</h3>
           </div>
@@ -78,6 +78,7 @@ export default {
         this.dice3=response.data[1][0]
         this.dice4=response.data[1][1]
         this.newPoint=response.data[0]
+        console.log("newpoint : ", this.newPoint)
 
         if(this.newPoint == this.currentPoint){
           this.resultat2="Gagné, toutes les mises sont gagnantes !"
@@ -89,7 +90,7 @@ export default {
           this.bouton = false
         }
         else if(this.newPoint == 7){
-          this.resultat="Perdu, toutes les mises sont perdantes !"
+          this.resultat2="Perdu, toutes les mises sont perdantes !"
           this.craps = false
           this.lepoint = true
           this.crapsEnd = true
@@ -118,6 +119,12 @@ export default {
       .post("http://localhost:8020/launch")
       .then((response) => {
         console.log("launch :", response)
+        this.lepoint = false
+        this.craps = false
+        this.crapsEnd = false
+        this.current = true
+        this.newP = false
+        this.bouton = true
         
       })
       .catch(error => {
