@@ -4,7 +4,7 @@
       <div class="template_title">
         <h1 class="yam">Craps</h1>
       </div>
-      <div class="lancer">
+      <div class="lancer" v-on:click.prevent="lancer()">
         <h3>Lancer les dés</h3>
       </div>
       <div class="template_rendu">
@@ -22,6 +22,7 @@
 
 <script>
 import Infos_partie from "@/components/Infos_partie.vue";
+import axios from "axios";
 
 export default {
   name: "Craps",
@@ -34,9 +35,30 @@ export default {
     };
   },
   props: ["id"],
-  created() {
-    console.log(this.id);
+  mounted(){
+    axios
+    .get("http://localhost:8020/run")
+    .then((response) => {
+      console.log("run :", response)
+      
+    })
+    .catch(error => {
+      console.log(error);
+    })
   },
+  methods:{
+    lancer(){
+    axios
+      .post("http://localhost:8020/launch")
+      .then((response) => {
+        console.log("launch :", response)
+        
+      })
+      .catch(error => {
+        console.log(error);
+    })
+    }
+  }   // fin de methods lancer
 
 };
 </script>
