@@ -1,84 +1,66 @@
 <template>
-    <h1>lancer 3D</h1>
-    <div id="info_div" style="display: none">
-      <div class="center_field">
-        <span id="label"></span>
-      </div>
-      <div class="center_field">
-        <div class="bottom_field">
-          <span id="labelhelp">click to continue or tap and drag again</span>
+    <div class="contain">
+        <div id="info_div" style="display: none">
+            <div class="center_field">
+                <span id="label"></span>
+            </div>
+            <!-- <div class="center_field">
+                <div class="bottom_field">
+                    <span id="labelhelp">click to continue or tap and drag again</span>
+                </div>
+            </div> -->
         </div>
-      </div>
-    </div>
-    <div id="selector_div" style="display: none">
-      <div class="center_field">
-        <div id="sethelp">
-          choose your dice set by clicking the dices or by direct input of
-          notation,<br />
-          tap and drag on free space of screen or hit throw button to roll
+        <div id="selector_div" style="display: none">
+            <div class="center_field">
+                <div id="sethelp">
+                    choose your dice set by clicking the dices or by direct input of notation,<br/>
+                    tap and drag on free space of screen or hit throw button to roll
+                </div>
+            </div>
+            <div class="center_field">
+                <input type="text" id="set" value="4d6"><br/>
+                <button id="clear">clear</button>
+                <button style="margin-left: 0.6em" id="throw">throw</button>
+            </div>
         </div>
-      </div>
-      <div class="center_field">
-        <input type="text" id="set" value="4d6" />
-        <button id="clear">clear</button>
-        <button style="margin-left: 0.6em" id="throw">throw</button>
-      </div>
-      
+        <div id="canvas"></div>
     </div>
-    <div id="canvas"></div>
-    
 </template>
 
 <script>
-import { loadScript } from "vue-plugin-load-script";
 
 export default {
-  name: 'Lancer_des',
+  name: 'Lancer',
   props: {
     msg: String,
     
   },
 
 mounted(){
-  loadScript("/libs/three.min.js")
-      .then(() => {
-        console.log("threejs ok");
-      })
-      .catch(() => {
-        console.log("threejs not ok")
-      });
+    
+    
+    let three = document.createElement('script');
+    three.setAttribute('src', "../libs/three.min.js");
+    document.body.appendChild(three);
 
-  loadScript("/libs/cannon.min.js")
-      .then(() => {
-        console.log("cannon ok");
-      })
-      .catch(() => {
-        console.log("cannon not ok")
-      });
+    let canon = document.createElement('script');
+    canon.setAttribute('src', "../libs/cannon.min.js");
+    document.body.appendChild(canon);
 
-  loadScript("/teal.js")
-      .then(() => {
-        console.log("teal ok");
-      })
-      .catch(() => {
-        console.log("teal not ok")
-      });
+    let teal = document.createElement('script');
+    teal.setAttribute('type', 'text/javascript')
+    teal.setAttribute('src', "./teal.js");
+    document.body.appendChild(teal);
 
-  loadScript("/dice.js")
-      .then(() => {
-        console.log("dice ok");
-      })
-      .catch(() => {
-        console.log("dice not ok")
-      });
+    let dice = document.createElement('script');
+    dice.setAttribute('type', 'text/javascript')
+    dice.setAttribute('src', "./dice.js");
+    document.body.appendChild(dice);
 
-  loadScript("/main.js")
-      .then(() => {
-        console.log("main ok");
-      })
-      .catch(() => {
-        console.log("main not ok")
-      });
+    let main = document.createElement('script');
+    main.setAttribute('type', 'text/javascript')
+    main.setAttribute('src', "./main.js");
+    document.body.appendChild(main);
 
     let initialize = document.createElement('script');
       initialize.setAttribute('type', 'text/javascript')
@@ -93,25 +75,7 @@ mounted(){
 
 </script>
 
-
 <style scoped>
-
-/* #svg *, .svg * {
-    -moz-user-select: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -o-user-select: none;
-    user-select: none;
-} */
-
-#waitform {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: 10000;
-    cursor: wait;
-}
-
 a {
     color: gray;
 }
@@ -126,6 +90,9 @@ em {
 
 body {
     font-family: Georgia;
+    width: 100%;
+    height: auto;
+    background-color: black;
 }
 
 h6 {
