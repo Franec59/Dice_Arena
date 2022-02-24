@@ -1,0 +1,7 @@
+version: '3.7'
+
+services:
+  craps:
+    build: ./craps
+    ports:
+    - "8020:90"

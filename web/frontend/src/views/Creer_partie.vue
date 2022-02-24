@@ -78,13 +78,13 @@ export default {
         partie: this.nomPartie,
         template: this.choixTemplate,
       };
-      console.log(newPartie);
+      // console.log(newPartie);
 
       // requete avec Axios pour le back ====================================
       axios
         .post("http://localhost:8000/partie", newPartie)
         .then((response) => {
-          console.log(response);
+          // console.log(response);
           console.log("retour db :", response.data._id);
 
         // renseigner le N° de partie et le profil dans le store =============
