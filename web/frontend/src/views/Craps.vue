@@ -8,9 +8,9 @@
         <h3>Lancer les dés</h3>
       </div>
       <div class="template_rendu">
-        <h3>Résultats ou scores attendus en fonction des templates de jeu</h3>
-        <h4>attaque</h4>
-        <h4>défense</h4>
+        <h3>Joueur, la valeur de vos des sont {{dice1}} et {{dice2}} pour un total de {{dices}}</h3>
+        <h4>Currentpoint: {{currentpoint}}</h4>
+        <h4>Résultat: {{resultat}}</h4>
       </div>
     </div>
     <!--fin de template-->
@@ -32,20 +32,14 @@ export default {
   data() {
     return {
       profil: "",
-    };
+      dice1: "",
+      dice2:"",
+      dices:"",
+      resultat:"",
+      
+      };
   },
   props: ["id"],
-  mounted(){
-    axios
-    .get("http://localhost:8020/run")
-    .then((response) => {
-      console.log("run :", response)
-      
-    })
-    .catch(error => {
-      console.log(error);
-    })
-  },
   methods:{
     lancer(){
     axios
@@ -57,8 +51,37 @@ export default {
       .catch(error => {
         console.log(error);
     })
-    }
-  }   // fin de methods lancer
+    axios
+    .get("http://localhost:8020/dices")
+    .then((response) => {
+      console.log("dice :", response)
+      this.dice1=response.data[0][0]
+      this.dice2=response.data[0][1]
+      this.dices=response.data[1]
+    })
+    .catch(error => {
+      console.log(error);
+    })
+    axios
+      .get("http://localhost:8020/check")
+      .then((response) => {
+        console.log("check :", response)
+        let result=response.data
+        if(result == "v"){
+          this.resultat="Victoire"
+        }
+        else if(result == "p"){
+          this.resultat="Perdu"
+        }
+        else if(result == "c"){
+        this.currentpoint=this.dices
+        }
+      })
+      .catch(error => {
+        console.log(error);
+    })
+    }   // fin de la fonction lancer
+  },   // fin de methods lancer
 
 };
 </script>
