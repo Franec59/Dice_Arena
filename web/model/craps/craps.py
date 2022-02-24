@@ -12,15 +12,25 @@ SERVER_HOST=os.environ.get("SERVER_HOST", "0.0.0.0")
 app=Flask(__name__)
 CORS(app)
 
-@app.get("/run")
-def run_craps():
-    Craps.game(2)
-    return "Système démarré"
-
 @app.post("/launch")
 def lancer():
     Craps.diceNumber()
     return "dice rolling"
+
+@app.get("/dices")
+def dices():
+    a=Craps.diceNumber()
+    return jsonify(a, sum(a))
+
+@app.get("/check")
+def check():
+    a=Craps.game(2)
+    return a
+
+app.post("/suite/<point>")
+def recup(point:int):
+    a=Craps.suitgame(point)
+    return jsonify(a)
 
 
 
