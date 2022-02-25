@@ -11,9 +11,13 @@ jobs:
         with:
           node-version: 14.x
       - name: installation des dépendances
-        run: npm i
+        run: |
+          cd web/frontend
+          npm i
       - name: execution des tests
-        run: npm run test:unit
+        run: |
+          cd web/frontend
+          npm run test:unit
   toto:
     needs: vuejs-test-unitaire
     runs-on: ubuntu-latest
