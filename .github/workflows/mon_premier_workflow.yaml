@@ -10,8 +10,9 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: 14.x
-      - name: execution tests
+      - name: installation des dépendances
         run: npm i
+      - name: execution des tests
         run: npm run test:unit
   toto:
     needs: vuejs-test-unitaire
