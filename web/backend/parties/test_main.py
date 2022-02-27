@@ -11,8 +11,7 @@ def test_anwser():
     assert inc(3) == 5
 
 
-
-
+# # test d'une insertion de données dans la BDD =============================================
 
 # import os
 # from readline import insert_text
@@ -30,12 +29,9 @@ def test_anwser():
 
 # app = Flask("parties")
 
-
 # client = MongoClient(host=MONGO_HOST, port=int(MONGO_PORT))
 # db = client["parties"]
 # collection = db["parties"]
-
-# # test d'une insertion de données dans la BDD =============================================
 
 # def test():
 #     test_insert = { "test" : "test"}
