@@ -24,6 +24,9 @@ jobs:
   python-test-unitaire:
     needs: vuejs-test-unitaire
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.9]
     steps:
       - name: recuperation du repo
         uses: actions/checkout@v2
@@ -32,9 +35,9 @@ jobs:
         with:
           python-version: 3.9
       - name: installation des dépendances
-        working-directory: ./web/model
         run: |
           python -m pip install --upgrade pip
+          pip install pytest
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
       - name: Test with pytest
         working-directory: ./web/model/craps
