@@ -46,6 +46,8 @@ jobs:
     # Generates an execution plan for Terraform
     - name: Terraform Plan
       run: terraform plan
+      with:
+        tf_actions_working_dir: ./gcp
       env:
         GOOGLE_CREDENTIALS: ${{ secrets.TF_API_TOKEN }}
         GCP_SA_KEY: ${{secrets.SSH_KEY}}
@@ -55,6 +57,8 @@ jobs:
     - name: Terraform Apply
       if: github.ref == 'refs/heads/master' && github.event_name == 'push'
       run: terraform apply -auto-approve
+      with:
+        tf_actions_working_dir: ./gcp
       env:
         GOOGLE_CREDENTIALS: ${{ secrets.TF_API_TOKEN }}
         GCP_SA_KEY: ${{secrets.SSH_KEY}}
