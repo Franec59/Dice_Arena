@@ -17,23 +17,26 @@ def lancer():
     Craps.diceNumber()
     return "dice rolling"
 
-@app.get("/dices")
-def dices():
-    a=Craps.diceNumber()
-    return jsonify(a, sum(a))
+# @app.get("/dices")
+# def dices():
+#     a=Craps.diceNumber()
+#     return jsonify(a, sum(a))
 
 @app.get("/check")
 def check():
     a=Craps.game(2)
-    return a
-
-app.post("/suite/<point>")
-def recup(point:int):
-    a=Craps.suitgame(point)
     return jsonify(a)
 
+# app.post("/suite/<point>")
+# def recup(point:int):
+#     a=Craps.suitgame(point)
+#     return jsonify(a)
 
-
+@app.post("/relance")
+def relance():
+    Craps.diceNumber()
+    a=Craps.faire_le_point(2)
+    return jsonify(a)
 
 
 if __name__ == "__main__":
