@@ -9,7 +9,7 @@ terraform{
 
 provider "google" {
     project = "dice-arena-340310"
-    credentials = "${file("./environements/key.json")}"
+    credentials = var.credentials
     region = "europe-west1"
     zone = "europe-west1-b"
 }
@@ -30,7 +30,7 @@ resource "google_compute_instance" "fraxaty" {
         }
     }
     metadata = {
-        ssh-keys = "thrawn.1809:${file("~/.ssh/id_rsa.pub")}"
+        ssh-keys = var.ssh_key
     }
 }
 output "public_ip" {
