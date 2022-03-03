@@ -33,12 +33,12 @@ jobs:
         GCP_SA_KEY: ${{secrets.SSH_KEY}}
 
     # Checks that all Terraform configuration files adhere to a canonical format
-    - name: Terraform Format
-      working-directory: ./gcp
-      run: terraform fmt -check
-      env:
-        GOOGLE_CREDENTIALS: ${{ secrets.TF_API_TOKEN }}
-        GCP_SA_KEY: ${{secrets.SSH_KEY}}
+    # - name: Terraform Format
+    #   working-directory: ./gcp
+    #   run: terraform fmt -check
+    #   env:
+    #     GOOGLE_CREDENTIALS: ${{ secrets.TF_API_TOKEN }}
+    #     GCP_SA_KEY: ${{secrets.SSH_KEY}}
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
