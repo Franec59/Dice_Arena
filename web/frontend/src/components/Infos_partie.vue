@@ -57,7 +57,7 @@ export default {
       axios
         .get('http://localhost:8000/mapartie/' + `${this.idPartie}`)
         .then((response) => {
-          console.log("mapartie :", response)
+          // console.log("mapartie :", response)
 
           this.nomPartie = response.data.partie
           this.numeroPartie = response.data._id
@@ -71,7 +71,7 @@ export default {
       axios
         .get('http://localhost:8000/joueur/' + `${idJoueur}`)
         .then((response) => {
-          console.log("joueur :", response)
+          // console.log("joueur :", response)
 
           this.monPseudo = response.data.pseudo
           this.profil = response.data.profil
@@ -86,9 +86,9 @@ export default {
       .get('http://localhost:8000/liste/' + `${this.idPartie}`,
       )
       .then(response => {
-          console.log("liste des joueurs :", response);
+          // console.log("liste des joueurs :", response);
           this.joueurs = response.data
-          console.log("tableau des joueurs :", response.data)
+          // console.log("tableau des joueurs :", response.data)
         })
       .catch(error => {
           console.log(error);

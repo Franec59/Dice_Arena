@@ -8,35 +8,18 @@ class Craps():
         dice2=random.randrange(1, 7)
         return (dice1, dice2)
 
-    # def twoDice(dices):
-    #     dice1, dice2= dices
-    #     return (dice1, dice2, sum(dices))
-
-
     def game(self):
         value=Craps.diceNumber()
-        # Craps.twoDice(value)
         sum_of_dices=sum(value)
         if sum_of_dices in (7, 11):
-            return "v"
-
+            return "v", sum_of_dices, value
         elif sum_of_dices in (2, 3, 12):
-            return "p"
-
+            return "p", sum_of_dices, value
         else:
-            return "c"
-            # result="Continue your game"
-            # currentpoint=sum_of_dices
-            # return currentpoint
-    def suitgame(point):
+            return "c", sum_of_dices, value
+            
+    def faire_le_point(self):
         value=Craps.diceNumber()
-        # Craps.twoDice(value)
         sum_of_dices=sum(value)
-        if sum_of_dices == point:
-            return "v"
-        elif sum_of_dices == 7:
-            return "p"
-        # if result== "Congrats":
-        #     print("Congrats")
-        # else:
-        #     print("Lost")
+        return sum_of_dices, value
+        

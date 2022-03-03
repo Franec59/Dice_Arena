@@ -8,12 +8,29 @@
         <h3>Lancer les dés</h3>
       </div>
       <div class="template_rendu">
-        <h3>Joueur, la valeur de vos des sont {{dice1}} et {{dice2}} pour un total de {{dices}}</h3>
-        <h4>Currentpoint: {{currentpoint}}</h4>
-        <h4>Résultat: {{resultat}}</h4>
-      </div>
-    </div>
-    <!--fin de template-->
+        <h3>Voici les règles de base du jeu de Craps selon le lancer de deux dés à 6 faces :</h3>
+        <ul>
+          <li>le joueur qui obtient 7 ou 11 remporte sa mise</li>
+          <li>le joueur qui obtient 2, 3 ou 12 perd l’ensemble de sa mise. C’est ce qui s’appelle le « Craps ».</li>
+          <li>le joueur qui obtient 4, 5, 6, 8, 9 ou 10 fait « le point ». Il doit alors relancer les dés jusqu’à ce que le point soit de nouveau obtenu. Si le point sort les mises sont gagnantes. Si un 7 est obtenu avant le point toutes les mises sont perdantes.</li>
+        </ul>
+        <h3>Pour jouer, appuyer sur le bouton lancer les dés</h3>
+        <div class="affiche_resultat" v-show="craps">
+          <h3>Sur ce lancé, vous obtenez : {{dice1}} et {{dice2}} pour un total de {{currentPoint}}</h3>
+          <h4>{{resultat}}</h4>
+        </div>
+        <div class="affiche_resultat" v-show="lepoint">
+          <h3 v-show="current">Sur ce lancé, vous obtenez : {{dice1}} et {{dice2}} pour un total de {{currentPoint}}</h3>
+          <h4>Vous devez faire le point à : {{currentPoint}}</h4>
+          <h3 v-show="newP">Sur ce lancé, vous obtenez : {{dice3}} et {{dice4}} pour un total de {{newPoint}}</h3>
+          <div class="lancer" v-on:click.prevent="relancer()" v-show="bouton">
+            <h3>Relancer</h3>
+          </div>
+          <h4 v-show="crapsEnd">{{resultat2}}</h4>
+        </div>
+      </div><!--fin de template_rendu-->
+      </div><!--fin de template-->
+      
     <Infos_partie />
     <!--fin de joueurs-->
   </div>
@@ -34,47 +51,108 @@ export default {
       profil: "",
       dice1: "",
       dice2:"",
-      dices:"",
+      currentPoint:"",
       resultat:"",
-      
+      lepoint:false,
+      craps:false,
+      dice3:"",
+      dice4:"",
+      newPoint:"",
+      resultat2:"",
+      crapsEnd:false,
+      current:true,
+      newP:false,
+      bouton:true
+    
       };
   },
   props: ["id"],
+
   methods:{
+
+    relancer(){
+      axios
+      .post("http://localhost:8020/relance")
+      .then((response) => {
+        console.log("relance :", response)
+        this.dice3=response.data[1][0]
+        this.dice4=response.data[1][1]
+        this.newPoint=response.data[0]
+        console.log("newpoint : ", this.newPoint)
+
+        if(this.newPoint == this.currentPoint){
+          this.resultat2="Gagné, toutes les mises sont gagnantes !"
+          this.craps = false
+          this.lepoint = true
+          this.crapsEnd = true
+          this.current = false
+          this.newP = true
+          this.bouton = false
+        }
+        else if(this.newPoint == 7){
+          this.resultat2="Perdu, toutes les mises sont perdantes !"
+          this.craps = false
+          this.lepoint = true
+          this.crapsEnd = true
+          this.current = false
+          this.newP = true
+          this.bouton = false
+        }
+        else {
+          this.craps = false
+          this.lepoint = true
+          this.crapsEnd = false
+          this.current = false
+          this.newP = true
+          this.bouton = true
+        }
+        
+      })
+      .catch(error => {
+        console.log(error);
+    })
+
+    },
+
     lancer(){
     axios
       .post("http://localhost:8020/launch")
       .then((response) => {
         console.log("launch :", response)
+        this.lepoint = false
+        this.craps = false
+        this.crapsEnd = false
+        this.current = true
+        this.newP = false
+        this.bouton = true
         
       })
       .catch(error => {
         console.log(error);
     })
     axios
-    .get("http://localhost:8020/dices")
-    .then((response) => {
-      console.log("dice :", response)
-      this.dice1=response.data[0][0]
-      this.dice2=response.data[0][1]
-      this.dices=response.data[1]
-    })
-    .catch(error => {
-      console.log(error);
-    })
-    axios
       .get("http://localhost:8020/check")
       .then((response) => {
         console.log("check :", response)
-        let result=response.data
+        this.dice1=response.data[2][0]
+        this.dice2=response.data[2][1]
+        this.currentPoint=response.data[1]
+
+        let result=response.data[0]
+        console.log(result)
         if(result == "v"){
-          this.resultat="Victoire"
+          this.resultat="Gagné, vous remportez la mise !"
+          this.craps = true
+          this.lepoint = false
         }
         else if(result == "p"){
-          this.resultat="Perdu"
+          this.resultat="Perdu, vous perdez votre mise !"
+          this.craps = true
+          this.lepoint = false
         }
         else if(result == "c"){
-        this.currentpoint=this.dices
+          this.lepoint = true
+          this.craps = false
         }
       })
       .catch(error => {
@@ -115,6 +193,7 @@ export default {
   background-size: cover;
   background-repeat: no-repeat;
   margin-top: 2rem;
+  margin-bottom: 4rem;
   width: 20rem;
   height: 10rem;
 }
@@ -132,7 +211,6 @@ export default {
   width: 10rem;
   height: 10rem;
   border-radius: 50%;
-  margin-top: 5rem;
   border: 2px solid wheat;
   background-image: radial-gradient(
     circle at center center,
@@ -153,7 +231,7 @@ export default {
 
 .lancer:hover {
   cursor: pointer;
-  transform: scale(1.3);
+  transform: scale(1.1);
 }
 
 .template_rendu {
@@ -197,6 +275,19 @@ export default {
     );
   padding-left: 1rem;
   color: whitesmoke;
+}
+
+.affiche_resultat{
+  background-color: rgb(101, 134, 100, 0.4);
+  padding-left:0.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 1.5rem;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* Partie responsive ================================================ */

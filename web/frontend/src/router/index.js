@@ -25,7 +25,7 @@ const routes = [
   {
     path: '/commencer',
     name: 'Commencer',
-    component: () => import(/* webpackChunkName: "CreatePartie" */ '../views/Commencer.vue')
+    component: () => import(/* webpackChunkName: "Commencer" */ '../views/Commencer.vue')
   },
   {
     path: '/joinPartie',
@@ -35,7 +35,12 @@ const routes = [
   {
     path: '/about',
     name: 'About',
-    component: () => import(/* webpackChunkName: "JoinPartie" */ '../views/About.vue')
+    component: () => import(/* webpackChunkName: "About" */ '../views/About.vue')
+  },
+  {
+    path: '/lancer',
+    name: 'Lancer',
+    component: () => import(/* webpackChunkName: "Lancer" */ '../views/Lancer.vue')
   },
   {
     path: '/neutre/:id',
@@ -70,6 +75,13 @@ const routes = [
     name: 'Craps',
     path: '/craps/:id',
     component: () => import(/* webpackChunkName: "Warhammer" */ '../views/Craps.vue'),
+    props: true
+
+  },
+  {
+    name: 'Wargame',
+    path: '/Wargame/:id',
+    component: () => import(/* webpackChunkName: "Warhammer" */ '../views/Wargame.vue'),
     props: true
 
   },

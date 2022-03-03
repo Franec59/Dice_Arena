@@ -61,7 +61,7 @@ export default {
       axios
         .get('http://localhost:8000/joueur/' + `${idJoueur}`)
         .then((response) => {
-          console.log("joueur :", response)
+          // console.log("joueur :", response)
 
           this.monPseudo = response.data.pseudo
           
