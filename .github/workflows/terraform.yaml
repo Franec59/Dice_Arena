@@ -44,8 +44,6 @@ jobs:
     - name: Terraform Plan
       working-directory: ./gcp
       run: terraform plan
-      with:
-        tf_actions_working_dir: ./gcp
       env:
         GOOGLE_CREDENTIALS: ${{ secrets.TF_API_TOKEN }}
         GCP_SA_KEY: ${{secrets.SSH_KEY}}
