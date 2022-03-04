@@ -7,14 +7,10 @@ RUN npm install -g http-server
 WORKDIR /app
 
 # copie 'package.json' et 'package-lock.json' (si disponible)
-COPY . .
+COPY ./web/frontend .
 # COPY package*.json ./
 
-#
-WORKDIR /web/frontend
-
 RUN ls
-
 
 # installe les dépendances du projet
 RUN npm install
