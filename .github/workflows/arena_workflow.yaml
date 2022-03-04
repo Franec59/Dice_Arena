@@ -61,7 +61,7 @@ jobs:
       - name: Build and push frontend
         uses: docker/build-push-action@v2
         with:
-          context: .
+          context: "{{defaultContext}}"
           file: ./web/frontend/Dockerfile
           push: true
           tags: franec59/arena:latest
