@@ -16,7 +16,7 @@ RUN npm install --force
 COPY . .
 
 # construit l'app pour la production en la minifiant
-RUN npm run build
+RUN npm run build --prod
 
 EXPOSE 8080
 CMD [ "http-server", "dist" ]
