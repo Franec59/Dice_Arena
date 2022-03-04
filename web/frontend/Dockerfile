@@ -10,9 +10,11 @@ WORKDIR /app
 COPY . .
 # COPY package*.json ./
 
-RUN ls
 #
 WORKDIR /web/frontend
+
+RUN ls
+
 
 # installe les dépendances du projet
 RUN npm install
