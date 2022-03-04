@@ -60,7 +60,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: ref before
         run: echo ${{github.ref_name}}
-      - name: Build and push frontend
+      # - name: Build and push frontend
         # uses: docker/build-push-action@v2
         # with:
         #   context: ${{ github.ref_name }}
