@@ -7,8 +7,9 @@ RUN npm install -g http-server
 WORKDIR /app
 
 # copie 'package.json' et 'package-lock.json' (si disponible)
-COPY package.json ./
-COPY package-lock.json ./
+COPY package.json package-lock.json ./
+# Run `npm ci` _before_ copying the application in
+RUN NODE_ENV=production npm ci
 
 # installe les dépendances du projet
 RUN npm install
