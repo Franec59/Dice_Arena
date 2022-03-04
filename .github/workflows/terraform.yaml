@@ -30,7 +30,7 @@ jobs:
       run: terraform init
       env:
         TF_VAR_credentials: ${{ secrets.TF_API_TOKEN }}
-        TF_VAR_ssh_key: ${{secrets.SSH_KEY}}
+        TF_VAR_ssh_key: ${{ secrets.SSH_KEY }}
 
     # Checks that all Terraform configuration files adhere to a canonical format
     # - name: Terraform Format
@@ -46,7 +46,7 @@ jobs:
       run: terraform plan
       env:
         TF_VAR_credentials: ${{ secrets.TF_API_TOKEN }}
-        TF_VAR_ssh_key: ${{secrets.SSH_KEY}}
+        TF_VAR_ssh_key: ${{ secrets.SSH_KEY }}
 
       # On push to master, build or change infrastructure according to Terraform configuration files
       # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
@@ -56,4 +56,4 @@ jobs:
       run: terraform apply -auto-approve
       env:
         TF_VAR_credentials: ${{ secrets.TF_API_TOKEN }}
-        TF_VAR_ssh_key: ${{secrets.SSH_KEY}}
+        TF_VAR_ssh_key: ${{ secrets.SSH_KEY }}
