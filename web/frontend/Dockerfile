@@ -11,7 +11,7 @@ COPY . .
 # COPY package*.json ./
 
 RUN ls
-
+#
 WORKDIR /web/frontend
 
 # installe les dépendances du projet
