@@ -81,7 +81,7 @@ jobs:
       - name: Build and push backend
         uses: docker/build-push-action@v2
         with:
-          file: ./web/backend/Dockerfile
+          file: ./web/backend/parties/Dockerfile
           push: true
           tags: franec59/arenaback:latest
       - name: Build and push model
