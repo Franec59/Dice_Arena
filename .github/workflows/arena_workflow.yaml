@@ -39,7 +39,7 @@ jobs:
   #       run: |
   #         pytest
   docker:
-    needs: python-test-unitaire
+    # needs: python-test-unitaire
     runs-on: ubuntu-latest
     steps:
       - name: recuperation du repo
