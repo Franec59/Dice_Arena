@@ -12,6 +12,8 @@ COPY . .
 
 RUN ls
 
+WORKDIR /web/frontend
+
 # installe les dépendances du projet
 RUN npm install
 
