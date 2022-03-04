@@ -11,7 +11,7 @@ COPY package*.json ./
 
 
 # installe les dépendances du projet
-RUN npm install
+RUN npm ci
 
 # copie les fichiers et dossiers du projet dans le dossier de travail (par exemple : le dossier 'app')
 COPY . .
