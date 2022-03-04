@@ -4,22 +4,22 @@ FROM node:lts-alpine
 RUN npm install -g http-server
 
 # définit le dossier 'app' comme dossier de travail
-WORKDIR /app
+# WORKDIR /app
 
 # copie 'package.json' et 'package-lock.json' (si disponible)
-COPY package*.json ./
+# COPY package*.json ./
 
 # installe les dépendances du projet
-RUN npm install
+# RUN npm install
 
 # copie les fichiers et dossiers du projet dans le dossier de travail (par exemple : le dossier 'app')
-COPY . .
+# COPY . .
 
 # construit l'app pour la production en la minifiant
-RUN npm run build
+# RUN npm run build
 
-EXPOSE 8080
-CMD [ "http-server", "dist" ]
+# EXPOSE 8080
+# CMD [ "http-server", "dist" ]
 
 # commande pour construire l'image
 # >docker build -t vuejs-cookbook/dockerize-vuejs-app .
