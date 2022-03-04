@@ -87,7 +87,7 @@ jobs:
       - name: Build and push model
         uses: docker/build-push-action@v2
         with:
-          file: ./web/model/Dockerfile
+          file: ./web/model/craps/Dockerfile
           push: true
           tags: franec59/arenamodel:latest
     
