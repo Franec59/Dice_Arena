@@ -4,43 +4,43 @@ on:
     branches:
       - 'dev'
 jobs:
-  # vuejs-test-unitaire:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: recuperation du repo
-  #       uses: actions/checkout@v2
-  #     - name: install nodejs
-  #       uses: actions/setup-node@v2
-  #       with:
-  #         node-version: 14.x
-  #     - name: installation des dépendances
-  #       working-directory: ./web/frontend
-  #       run: npm i
-  #     - name: execution des tests
-  #       working-directory: ./web/frontend
-  #       run: npm run test:unit
-  # python-test-unitaire:
-  #   needs: vuejs-test-unitaire
-  #   runs-on: ubuntu-latest
-  #   strategy:
-  #     matrix:
-  #       python-version: [3.9]
-  #   steps:
-  #     - name: recuperation du repo
-  #       uses: actions/checkout@v2
-  #     - name: install Python 3.9
-  #       uses: actions/setup-python@v2
-  #       with:
-  #         python-version: 3.9
-  #     - name: installation des dépendances
-  #       run: |
-  #         python -m pip install --upgrade pip
-  #         pip install pytest
-  #         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-  #     - name: Test with pytest
-  #       working-directory: ./web/model/craps
-  #       run: |
-  #         pytest
+  vuejs-test-unitaire:
+    runs-on: ubuntu-latest
+    steps:
+      - name: recuperation du repo
+        uses: actions/checkout@v2
+      - name: install nodejs
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14.x
+      - name: installation des dépendances
+        working-directory: ./web/frontend
+        run: npm i
+      - name: execution des tests
+        working-directory: ./web/frontend
+        run: npm run test:unit
+  python-test-unitaire:
+    needs: vuejs-test-unitaire
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.9]
+    steps:
+      - name: recuperation du repo
+        uses: actions/checkout@v2
+      - name: install Python 3.9
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+      - name: installation des dépendances
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      - name: Test with pytest
+        working-directory: ./web/model/craps
+        run: |
+          pytest
   docker:
     # needs: python-test-unitaire
     runs-on: ubuntu-latest
@@ -60,13 +60,6 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: ref before
         run: echo ${{github.ref_name}}
-      # - name: Build and push frontend
-        # uses: docker/build-push-action@v2
-        # with:
-        #   context: ${{ github.ref_name }}
-        #   file: ./web/frontend/Dockerfile
-        #   push: true
-        #   tags: franec59/arena:latest
       - uses: mr-smithers-excellent/docker-build-push@v5
         name: Build & push Docker image
         with:
@@ -76,8 +69,6 @@ jobs:
           dockerfile: ./web/frontend/Dockerfile
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-      # - name: ref after
-      #   run: echo ${{github.ref_name}}
       - name: Build and push backend
         uses: docker/build-push-action@v2
         with:
