@@ -63,3 +63,6 @@ jobs:
         TF_VAR_ssh_key: ${{ secrets.SSH_KEY }}
         TF_VAR_mongodbatlas_public_key: ${{ secrets.API_PUBLIC_KEY }}
         TF_VAR_mongodbatlas_private_key: ${{ secrets.API_PRIVATE_KEY }}
+      
+    - name: Terraform Output
+      run: terraform output -json
