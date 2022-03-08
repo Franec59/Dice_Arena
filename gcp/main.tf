@@ -34,15 +34,12 @@ resource "google_compute_instance" "fraxaty" {
     network_interface {
         network = google_compute_network.fraxaty_vpc.name
         access_config {
-            nat_ip = google_compute_address.ip_adress.address
+            nat_ip = "34.76.92.56"
         }
     }
     metadata = {
         ssh-keys = var.ssh_key
     }
-}
-resource "google_compute_address" "ip_adress" {
-  name = "ip-publique"
 }
 
 output "public_ip" {
