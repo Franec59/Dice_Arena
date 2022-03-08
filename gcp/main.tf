@@ -4,6 +4,10 @@ terraform{
             source = "hashicorp/google"
             version = "4.9.0"
         }
+        mongodbatlas = {
+            source = "mongodb/mongodbatlas"
+            version = "1.3.0"
+        }
     }
 }
 
