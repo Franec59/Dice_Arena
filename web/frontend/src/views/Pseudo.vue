@@ -64,14 +64,15 @@ export default {
         numero_partie : this.$store.state.idPartie
       };
       console.log("verif newpseudo : ", newPseudo)
-
+      const ipStatic = this.$store.state.ip_static
       //requete axios vers le backend ===============================================
-      axios.defaults.baseURL = 'http://localhost:8000/partie';
+      axios.defaults.baseURL = 'http://' + `${ipStatic}` + ':8000/partie';
       axios.defaults.headers.post['Content-Type'] ='application/json;charset=utf-8';
       axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
 
       axios
-        .post('http://localhost:8000/partie', newPseudo )
+        .post('http://' + `${ipStatic}` + ':8000/partie', newPseudo )
+        // .post('http://localhost:8000/partie', newPseudo )
         .then((response) => {
           console.log(response)
 

@@ -18,7 +18,7 @@
           height="50"
         ></rect>
       </svg>
-      <span>Entrez dans l'arène</span>
+      <span>Entrer dans l'arène</span>
     </a>
   </div>
 </template>

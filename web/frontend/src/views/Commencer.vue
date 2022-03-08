@@ -57,9 +57,10 @@ export default {
   mounted (){
       const idJoueur = this.$store.state.idPseudo
       const idPartie = this.$store.state.idPartie
+      const ipStatic = this.$store.state.ip_static
     // requete GET pseudo du joueur ====================================
       axios
-        .get('http://localhost:8000/joueur/' + `${idJoueur}`)
+        .get('http://' + `${ipStatic}` + ':8000/joueur/' + `${idJoueur}`)
         .then((response) => {
           // console.log("joueur :", response)
 
@@ -72,7 +73,8 @@ export default {
 
     // requete GET partie en cours ====================================
       axios
-        .get('http://localhost:8000/mapartie/' + `${idPartie}`)
+        .get('http://' + `${ipStatic}` + ':8000/mapartie/' + `${idPartie}`)
+        // .get('http://localhost:8000/mapartie/' + `${idPartie}`)
         .then((response) => {
           console.log("mapartie :", response)
 

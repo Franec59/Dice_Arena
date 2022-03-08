@@ -4,9 +4,9 @@
       <div class="bloc1"></div>
       <div class="bloc2">
         <div class="bienvenue">
-          <h1 class="affichage">Bienvenue sur<br />Dice-Aréna</h1>
+          <h1 class="affichage">Bienvenue sur<br />Dice-Arena</h1>
           <h2 class="affichage2">Une aide de jeux</h2>
-          <h3 class="affichage2">Multijoueur & Thématique<br /> de lancé de dés !</h3>
+          <h3 class="affichage2">Multijoueur & Thématique<br /> de lancer de dés !</h3>
         </div>
         <!--insertion du cube-->
         <Cube />

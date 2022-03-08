@@ -5,7 +5,9 @@ export default createStore({
   state: {
     idPartie : null,
     profil : null,
-    idPseudo : null
+    idPseudo : null,
+    ip_static : "localhost"
+    // ip_static : "34.76.92.56"
     
   },
   mutations: {

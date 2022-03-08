@@ -52,10 +52,11 @@ export default {
     const idJoueur = this.$store.state.idPseudo
     this.idPartie = this.$store.state.idPartie
     console.log("idpartie from store :", this.idPartie)
+    const ipStatic = this.$store.state.ip_static
      
     // requete GET partie en cours ====================================
       axios
-        .get('http://localhost:8000/mapartie/' + `${this.idPartie}`)
+        .get('http://' + `${ipStatic}` + ':8000/mapartie/' + `${this.idPartie}`)
         .then((response) => {
           // console.log("mapartie :", response)
 
@@ -69,7 +70,7 @@ export default {
 
     // requete GET du joueur en cours ====================================
       axios
-        .get('http://localhost:8000/joueur/' + `${idJoueur}`)
+        .get('http://' + `${ipStatic}` + ':8000/joueur/' + `${idJoueur}`)
         .then((response) => {
           // console.log("joueur :", response)
 
@@ -83,7 +84,8 @@ export default {
 
     //requete GET pour récupérer la liste des joueurs ================================================
       axios
-      .get('http://localhost:8000/liste/' + `${this.idPartie}`,
+      .get('http://' + `${ipStatic}` + ':8000/liste/' + `${this.idPartie}`,
+      // .get('http://localhost:8000/liste/' + `${this.idPartie}`,
       )
       .then(response => {
           // console.log("liste des joueurs :", response);

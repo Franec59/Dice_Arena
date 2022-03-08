@@ -4,7 +4,7 @@
     <div class="mainscreen">
       <div class="card">
         <div class="leftside">
-          <h1>Créer ou rejoindre une partie !</h1>
+          <h1>Créer ou rejoindre <br>une partie !</h1>
           <!-- logo de xavier -->
           <img
             src="../assets/images/logo_da.png"

@@ -14,6 +14,7 @@ export default {
   },
   methods: {
     cloture: function () {
+      const ipStatic = this.$store.state.ip_static
       let text = "Voulez vous cloturer définitivement cette partie ?";
       if(confirm(text) == true){
       
@@ -22,7 +23,8 @@ export default {
       console.log("store : ", this.$store.state.idPartie)
 
       axios
-        .delete('http://localhost:8000/deletepartie/' + `${idPartie}`)
+        .delete('http://' + `${ipStatic}` + ':8000/deletepartie/' + `${idPartie}`)
+        // .delete('http://localhost:8000/deletepartie/' + `${idPartie}`)
         .then((response) => {
           console.log(response)
           this.$router.push("/");

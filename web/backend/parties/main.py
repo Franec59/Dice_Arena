@@ -6,7 +6,8 @@ from flask_cors import CORS, cross_origin
 
 # mongoDB ============================================================
 
-MONGO_HOST=os.environ.get("MONGO_HOST", "localhost")
+MONGO_HOST=os.environ.get("MONGO_HOST", "34.76.92.56")
+# MONGO_HOST=os.environ.get("MONGO_HOST", "localhost")
 MONGO_PORT=os.environ.get("MONGO_PORT", "27017")
 DEBUG_MODE=os.environ.get("DEBUG_MODE", "True")
 SERVER_PORT=os.environ.get("SERVER_PORT", "80")

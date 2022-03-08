@@ -14,6 +14,7 @@ export default {
   },
   methods: {
     quitter: function () {
+      const ipStatic = this.$store.state.ip_static
       let text = "Voulez vous quitter définitivement cette partie ?";
       if(confirm(text) == true){
       //requête back pour effacer ce joueur dans la BDD ==================
@@ -21,7 +22,8 @@ export default {
       console.log("store : ", this.$store.state.idPseudo)
 
       axios
-        .delete('http://localhost:8000/partie/' + `${idDeleted}`)
+        .delete('http://' + `${ipStatic}` + ':8000/partie/' + `${idDeleted}`)
+        // .delete('http://localhost:8000/partie/' + `${idDeleted}`)
         .then((response) => {
           console.log(response)
           this.$router.push("/");

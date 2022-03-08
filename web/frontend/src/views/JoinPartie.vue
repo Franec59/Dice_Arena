@@ -19,7 +19,7 @@
             v-on:submit.prevent="joinPartie()"
           >
             <h2 class="profil_joueur">Profil "joueur"</h2>
-            <p>Entrez le N° de la partie.</p>
+            <p>Entrer le N° de la partie.</p>
             <input
               type="text"
               class="inputbox"
@@ -56,10 +56,12 @@ export default {
 
   methods: {
     joinPartie() {
+      const ipStatic = this.$store.state.ip_static
         // requete GET partie pour vérifier la partie en cours ====================================
         let verif = this.numPartie
       axios
-        .get('http://localhost:8000/mapartie/' + `${verif}`)
+        .get('http://' + `${ipStatic}` + ':8000/mapartie/' + `${verif}`)
+        // .get('http://localhost:8000/mapartie/' + `${verif}`)
         .then((response) => {
           console.log("response.data :", response.data)
           console.log("envoi de l'id partie au store :", this.numPartie);

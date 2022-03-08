@@ -8,29 +8,51 @@
         <h3>Lancer les dés</h3>
       </div>
       <div class="template_rendu">
-        <h3>Voici les règles de base du jeu de Craps selon le lancer de deux dés à 6 faces :</h3>
+        <h3>
+          Voici les règles de base du jeu de Craps selon le lancer de deux dés à
+          6 faces :
+        </h3>
         <ul>
           <li>le joueur qui obtient 7 ou 11 remporte sa mise</li>
-          <li>le joueur qui obtient 2, 3 ou 12 perd l’ensemble de sa mise. C’est ce qui s’appelle le « Craps ».</li>
-          <li>le joueur qui obtient 4, 5, 6, 8, 9 ou 10 fait « le point ». Il doit alors relancer les dés jusqu’à ce que le point soit de nouveau obtenu. Si le point sort les mises sont gagnantes. Si un 7 est obtenu avant le point toutes les mises sont perdantes.</li>
+          <li>
+            le joueur qui obtient 2, 3 ou 12 perd l’ensemble de sa mise. C’est
+            ce qui s’appelle le « Craps ».
+          </li>
+          <li>
+            le joueur qui obtient 4, 5, 6, 8, 9 ou 10 fait « le point ». Il doit
+            alors relancer les dés jusqu’à ce que le point soit de nouveau
+            obtenu. Si le point sort les mises sont gagnantes. Si un 7 est
+            obtenu avant le point, toutes les mises sont perdantes !
+          </li>
         </ul>
-        <h3>Pour jouer, appuyer sur le bouton lancer les dés</h3>
+        <h3>Pour jouer, initier une partie : <button class="init" v-on:click.prevent="init()">Initier</button> <br>Puis appuyer sur le bouton "lancer les dés"</h3>
         <div class="affiche_resultat" v-show="craps">
-          <h3>Sur ce lancé, vous obtenez : {{dice1}} et {{dice2}} pour un total de {{currentPoint}}</h3>
-          <h4>{{resultat}}</h4>
+          <h3>
+            Sur ce lancer, vous obtenez : {{ dice1 }} et {{ dice2 }} pour un
+            total de {{ currentPoint }}
+          </h3>
+          <h4>{{ resultat }}</h4>
         </div>
         <div class="affiche_resultat" v-show="lepoint">
-          <h3 v-show="current">Sur ce lancé, vous obtenez : {{dice1}} et {{dice2}} pour un total de {{currentPoint}}</h3>
-          <h4>Vous devez faire le point à : {{currentPoint}}</h4>
-          <h3 v-show="newP">Sur ce lancé, vous obtenez : {{dice3}} et {{dice4}} pour un total de {{newPoint}}</h3>
+          <h3 v-show="current">
+            Sur ce lancer, vous obtenez : {{ dice1 }} et {{ dice2 }} pour un
+            total de {{ currentPoint }}
+          </h3>
+          <h4>Vous devez faire le point à : {{ currentPoint }}</h4>
+          <h3 v-show="newP">
+            Sur ce lancé, vous obtenez : {{ dice3 }} et {{ dice4 }} pour un
+            total de {{ newPoint }}
+          </h3>
           <div class="lancer" v-on:click.prevent="relancer()" v-show="bouton">
             <h3>Relancer</h3>
           </div>
-          <h4 v-show="crapsEnd">{{resultat2}}</h4>
+          <h4 v-show="crapsEnd">{{ resultat2 }}</h4>
         </div>
-      </div><!--fin de template_rendu-->
-      </div><!--fin de template-->
-      
+      </div>
+      <!--fin de template_rendu-->
+    </div>
+    <!--fin de template-->
+
     <Infos_partie />
     <!--fin de joueurs-->
   </div>
@@ -44,123 +66,122 @@ import axios from "axios";
 export default {
   name: "Craps",
   components: {
-    Infos_partie
+    Infos_partie,
   },
   data() {
     return {
       profil: "",
       dice1: "",
-      dice2:"",
-      currentPoint:"",
-      resultat:"",
-      lepoint:false,
-      craps:false,
-      dice3:"",
-      dice4:"",
-      newPoint:"",
-      resultat2:"",
-      crapsEnd:false,
-      current:true,
-      newP:false,
-      bouton:true
-    
-      };
+      dice2: "",
+      currentPoint: "",
+      resultat: "",
+      lepoint: false,
+      craps: false,
+      dice3: "",
+      dice4: "",
+      newPoint: "",
+      resultat2: "",
+      crapsEnd: false,
+      current: true,
+      newP: false,
+      bouton: true,
+    };
   },
   props: ["id"],
 
-  methods:{
-
-    relancer(){
-      axios
-      .post("http://localhost:8020/relance")
-      .then((response) => {
-        console.log("relance :", response)
-        this.dice3=response.data[1][0]
-        this.dice4=response.data[1][1]
-        this.newPoint=response.data[0]
-        console.log("newpoint : ", this.newPoint)
-
-        if(this.newPoint == this.currentPoint){
-          this.resultat2="Gagné, toutes les mises sont gagnantes !"
-          this.craps = false
-          this.lepoint = true
-          this.crapsEnd = true
-          this.current = false
-          this.newP = true
-          this.bouton = false
-        }
-        else if(this.newPoint == 7){
-          this.resultat2="Perdu, toutes les mises sont perdantes !"
-          this.craps = false
-          this.lepoint = true
-          this.crapsEnd = true
-          this.current = false
-          this.newP = true
-          this.bouton = false
-        }
-        else {
-          this.craps = false
-          this.lepoint = true
-          this.crapsEnd = false
-          this.current = false
-          this.newP = true
-          this.bouton = true
-        }
-        
-      })
-      .catch(error => {
-        console.log(error);
-    })
-
+  methods: {
+    init(){
+      location.reload();
     },
 
-    lancer(){
-    axios
-      .post("http://localhost:8020/launch")
-      .then((response) => {
-        console.log("launch :", response)
-        this.lepoint = false
-        this.craps = false
-        this.crapsEnd = false
-        this.current = true
-        this.newP = false
-        this.bouton = true
-        
-      })
-      .catch(error => {
-        console.log(error);
-    })
-    axios
-      .get("http://localhost:8020/check")
-      .then((response) => {
-        console.log("check :", response)
-        this.dice1=response.data[2][0]
-        this.dice2=response.data[2][1]
-        this.currentPoint=response.data[1]
+    relancer() {
+      const ipStatic = this.$store.state.ip_static;
+      axios
+        // .post("http://localhost:8020/relance")
+        .post("http://" + `${ipStatic}` + ":8020/relance")
+        .then((response) => {
+          console.log("relance :", response);
+          this.dice3 = response.data[1][0];
+          this.dice4 = response.data[1][1];
+          this.newPoint = response.data[0];
+          console.log("newpoint : ", this.newPoint);
 
-        let result=response.data[0]
-        console.log(result)
-        if(result == "v"){
-          this.resultat="Gagné, vous remportez la mise !"
-          this.craps = true
-          this.lepoint = false
-        }
-        else if(result == "p"){
-          this.resultat="Perdu, vous perdez votre mise !"
-          this.craps = true
-          this.lepoint = false
-        }
-        else if(result == "c"){
-          this.lepoint = true
-          this.craps = false
-        }
-      })
-      .catch(error => {
-        console.log(error);
-    })
-    }   // fin de la fonction lancer
-  },   // fin de methods lancer
+          if (this.newPoint == this.currentPoint) {
+            this.resultat2 = "Gagné, toutes les mises sont gagnantes !";
+            this.craps = false;
+            this.lepoint = true;
+            this.crapsEnd = true;
+            this.current = false;
+            this.newP = true;
+            this.bouton = false;
+          } else if (this.newPoint == 7) {
+            this.resultat2 = "Perdu, toutes les mises sont perdantes !";
+            this.craps = false;
+            this.lepoint = true;
+            this.crapsEnd = true;
+            this.current = false;
+            this.newP = true;
+            this.bouton = false;
+          } else {
+            this.craps = false;
+            this.lepoint = true;
+            this.crapsEnd = false;
+            this.current = false;
+            this.newP = true;
+            this.bouton = true;
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
 
+    lancer() {
+      const ipStatic2 = this.$store.state.ip_static;
+      axios
+        .post("http://" + `${ipStatic2}` + ":8020/launch")
+        .then((response) => {
+          console.log("launch :", response);
+          this.lepoint = false;
+          this.craps = false;
+          this.crapsEnd = false;
+          this.current = true;
+          this.newP = false;
+          this.bouton = true;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
+      axios
+        .get("http://" + `${ipStatic2}` + ":8020/check")
+        // .get("http://localhost:8020/check")
+        .then((response) => {
+          console.log("check :", response);
+          this.dice1 = response.data[2][0];
+          this.dice2 = response.data[2][1];
+          this.currentPoint = response.data[1];
+
+          let result = response.data[0];
+          console.log(result);
+          if (result == "v") {
+            this.resultat = "Gagné, vous remportez la mise !";
+            this.craps = true;
+            this.lepoint = false;
+          } else if (result == "p") {
+            this.resultat = "Perdu, vous perdez votre mise !";
+            this.craps = true;
+            this.lepoint = false;
+          } else if (result == "c") {
+            this.lepoint = true;
+            this.craps = false;
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }, // fin de la fonction lancer
+  }, // fin de methods lancer
 };
 </script>
 
@@ -235,7 +256,8 @@ export default {
 }
 
 .template_rendu {
-  width: 90%;
+  /* width: 90%; */
+  max-width: 45rem;
   min-height: 20rem;
   border: 2px solid wheat;
   margin-top: 3rem;
@@ -277,9 +299,9 @@ export default {
   color: whitesmoke;
 }
 
-.affiche_resultat{
+.affiche_resultat {
   background-color: rgb(101, 134, 100, 0.4);
-  padding-left:0.5rem;
+  padding-left: 0.5rem;
   padding-top: 0.5rem;
   padding-bottom: 1.5rem;
   margin-right: 1rem;
@@ -290,6 +312,17 @@ export default {
   align-items: center;
 }
 
+.init{
+  cursor: pointer;
+  border-radius:10px;
+  background-color:blanchedalmond;
+}
+
+.init:hover{
+  box-shadow: 4px 4px 2px black;
+
+}
+
 /* Partie responsive ================================================ */
 
 @media only screen and (max-width: 900px) {
@@ -297,5 +330,9 @@ export default {
     flex-direction: column;
   }
 
+  .template_rendu{
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
 }
 </style>

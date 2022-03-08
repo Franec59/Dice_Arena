@@ -15,12 +15,14 @@ export default {
     deletePseudo: function () {
       const idDeleted = this.$store.state.idPseudo
       console.log("store : ", this.$store.state.idPseudo)
+      const ipStatic = this.$store.state.ip_static
 
-      axios.defaults.baseURL = 'http://localhost:8000/partie';
+      axios.defaults.baseURL = 'http://' + `${ipStatic}` + ':8000/partie';
       axios.defaults.headers.post['Content-Type'] ='application/json;charset=utf-8';
       axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
       axios
-        .delete('http://localhost:8000/partie/' + `${idDeleted}`)
+        .delete('http://' + `${ipStatic}` + ':8000/partie/' + `${idDeleted}`)
+        // .delete('http://localhost:8000/partie/' + `${idDeleted}`)
         .then((response) => {
           console.log(response)
           this.$router.push("/pseudo");

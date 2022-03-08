@@ -20,7 +20,7 @@
             method="post"
           >
             <h2>Profil "master"</h2>
-            <p>Nommez votre partie !</p>
+            <p>Nommer votre partie !</p>
             <input
               type="text"
               class="inputbox"
@@ -79,10 +79,10 @@ export default {
         template: this.choixTemplate,
       };
       // console.log(newPartie);
-
+      const ipStatic = this.$store.state.ip_static
       // requete avec Axios pour le back ====================================
       axios
-        .post("http://localhost:8000/partie", newPartie)
+        .post('http://' + `${ipStatic}` + ':8000/partie', newPartie)
         .then((response) => {
           // console.log(response);
           console.log("retour db :", response.data._id);
