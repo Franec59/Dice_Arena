@@ -10,7 +10,6 @@ terraform{
         }
     }
 }
-
 provider "google" {
     project = "dice-arena-340310"
     credentials = var.credentials
