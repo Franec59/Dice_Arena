@@ -41,7 +41,6 @@ resource "google_compute_instance" "fraxaty" {
         ssh-keys = var.ssh_key
     }
 }
-
 output "public_ip" {
     value = google_compute_instance.fraxaty.network_interface[0].access_config[0].nat_ip
 }
