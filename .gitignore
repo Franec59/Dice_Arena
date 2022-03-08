@@ -4,3 +4,4 @@ key.json
 .terraform.lock.hcl
 ./env
 ./git
+./workflows

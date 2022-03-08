@@ -1,13 +1,9 @@
 #!/bin/bash
 
-docker pull franec59/arenamodel:latest
+sudo apt-get update
 
-docker pull franec59/arenaback:latest
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 
-docker pull franec59/arena:latest
+sudo apt-get update
 
-docker run -d -p 8080:8080 franec59/arena
-
-docker run -d -p 8000:80 franec59/arenaback
-
-docker run -d -p 8020:90 franec59/arenamodel
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io
