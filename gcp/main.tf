@@ -22,26 +22,34 @@ provider "mongodbatlas" {
     public_key = var.mongodbatlas_public_key
     private_key  = var.mongodbatlas_private_key
 }
+data "google_compute_image" "ubuntu_image" {
+    family = "ubuntu-os-cloud/ubuntu-2004-lts"
+    project = "dice-arena"
+}
 
 resource "google_compute_instance" "fraxaty" {
     machine_type = "e2-medium"
     name = "fraxaty-vm"
     boot_disk {
         initialize_params {
-            image = "ubuntu-os-cloud/ubuntu-2004-lts"
+            image = data.google_compute_image.ubuntu_image.self_link
             size = 50
         }
     }
     network_interface {
         network = google_compute_network.fraxaty_vpc.name
         access_config {
-            
+            nat_ip = google_compute_address.ip_adress.address
         }
     }
     metadata = {
         ssh-keys = var.ssh_key
     }
 }
+resource "google_compute_address" "ip_adress" {
+  name = "ip-publique"
+}
+
 output "public_ip" {
     value = google_compute_instance.fraxaty.network_interface[0].access_config[0].nat_ip
 }
