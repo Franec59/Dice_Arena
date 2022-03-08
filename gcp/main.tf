@@ -14,6 +14,11 @@ provider "google" {
     zone = "europe-west1-b"
 }
 
+provider "mongodbatlas" {
+    public_key = var.mongodbatlas_public_key
+    private_key  = var.mongodbatlas_private_key
+}
+
 resource "google_compute_instance" "fraxaty" {
     machine_type = "e2-medium"
     name = "fraxaty-vm"
