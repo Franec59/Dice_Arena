@@ -22,17 +22,13 @@ provider "mongodbatlas" {
     public_key = var.mongodbatlas_public_key
     private_key  = var.mongodbatlas_private_key
 }
-data "google_compute_image" "ubuntu_image" {
-    family = "ubuntu-os-cloud/ubuntu-2004-lts"
-    project = "dice-arena"
-}
 
 resource "google_compute_instance" "fraxaty" {
     machine_type = "e2-medium"
     name = "fraxaty-vm"
     boot_disk {
         initialize_params {
-            image = data.google_compute_image.ubuntu_image.self_link
+            image = "ubuntu-os-cloud/ubuntu-2004-lts"
             size = 50
         }
     }
