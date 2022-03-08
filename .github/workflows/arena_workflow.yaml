@@ -42,7 +42,7 @@ jobs:
         run: |
           pytest
   docker:
-    # needs: python-test-unitaire
+    needs: python-test-unitaire
     runs-on: ubuntu-latest
     steps:
       - name: recuperation du repo
@@ -82,3 +82,4 @@ jobs:
           push: true
           tags: franec59/arenamodel:latest
     
+# run: docker-compose -f "docker-compose.yml" up -d --build
