@@ -34,14 +34,6 @@ jobs:
         TF_VAR_mongodbatlas_public_key: ${{ secrets.API_PUBLIC_KEY }}
         TF_VAR_mongodbatlas_private_key: ${{ secrets.API_PRIVATE_KEY }}
 
-    # Checks that all Terraform configuration files adhere to a canonical format
-    - name: Terraform Format
-      working-directory: ./gcp
-      run: terraform fmt -check
-      env:
-        GOOGLE_CREDENTIALS: ${{ secrets.TF_API_TOKEN }}
-        GCP_SA_KEY: ${{secrets.SSH_KEY}}
-
     # Generates an execution plan for Terraform
     - name: Terraform Plan
       working-directory: ./gcp
@@ -63,7 +55,7 @@ jobs:
         TF_VAR_ssh_key: ${{ secrets.SSH_KEY }}
         TF_VAR_mongodbatlas_public_key: ${{ secrets.API_PUBLIC_KEY }}
         TF_VAR_mongodbatlas_private_key: ${{ secrets.API_PRIVATE_KEY }}
-        
+
   Installation:
     needs: terraform
     runs-on: ubuntu-latest
