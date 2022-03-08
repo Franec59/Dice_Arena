@@ -1,4 +1,6 @@
 #!/bin/bash
+ssh thrawn.1809@34.76.92.56
+
 sudo apt-get update
 
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
