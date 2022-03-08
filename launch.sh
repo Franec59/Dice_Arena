@@ -1,5 +1,5 @@
 #!/bin/bash
-ssh thrawn.1809@34.76.92.56
+
 
 sudo apt-get update
 
