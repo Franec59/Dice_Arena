@@ -73,4 +73,7 @@ jobs:
       - name: execution du script
         working-directory: ./Dice_Arena
         run: ./launch.sh
+        env:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
