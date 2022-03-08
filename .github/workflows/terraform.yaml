@@ -56,19 +56,19 @@ jobs:
         TF_VAR_mongodbatlas_public_key: ${{ secrets.API_PUBLIC_KEY }}
         TF_VAR_mongodbatlas_private_key: ${{ secrets.API_PRIVATE_KEY }}
 
-  Installation:
-    needs: terraform
-    runs-on: ubuntu-latest
-    steps:
-      - name: Git clone
-        run: git clone https://github.com/Franec59/Dice_Arena.git
-      - name: Permission
-        working-directory: ./Dice_Arena
-        run: chmod 775 launch.sh
-      - name: execution du script
-        working-directory: ./Dice_Arena
-        run: ./launch.sh
-        env:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+  # Installation:
+  #   needs: terraform
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Git clone
+  #       run: git clone https://github.com/Franec59/Dice_Arena.git
+  #     - name: Permission
+  #       working-directory: ./Dice_Arena
+  #       run: chmod 775 launch.sh
+  #     - name: execution du script
+  #       working-directory: ./Dice_Arena
+  #       run: ./launch.sh
+  #       env:
+  #         username: ${{ secrets.DOCKERHUB_USERNAME }}
+  #         password: ${{ secrets.DOCKERHUB_TOKEN }}
 
