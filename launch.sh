@@ -9,16 +9,16 @@ apt-cache policy docker-ce
 sudo apt install docker-ce
 sudo docker login
 
-sudo docker pull franec59/arenamodel:latest
+cd web/backend
 
-sudo docker pull franec59/arenaback:latest
+docker-compose up -d
+
+sudo docker pull franec59/arenamodel:latest
 
 sudo docker pull franec59/arena:latest
 
-sleep 30
+sleep 15
 
 sudo docker run -d -p 8080:8080 franec59/arena
-
-sudo docker run -d -p 8000:80 franec59/arenaback
 
 sudo docker run -d -p 8020:90 franec59/arenamodel
