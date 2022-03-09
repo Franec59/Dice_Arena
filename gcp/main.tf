@@ -83,4 +83,4 @@ resource "google_compute_firewall" "fraxaty-rule" {
 #   provider_name = "GCP"
 #   disk_size_gb = 40
 #   provider_instance_size_name = "M30"
-}
+# }
