@@ -15,6 +15,8 @@ sudo docker pull franec59/arenaback:latest
 
 sudo docker pull franec59/arena:latest
 
+sleep 30
+
 sudo docker run -d -p 8080:8080 franec59/arena
 
 sudo docker run -d -p 8000:80 franec59/arenaback
