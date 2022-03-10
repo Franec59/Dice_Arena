@@ -47,7 +47,7 @@ jobs:
       # On push to master, build or change infrastructure according to Terraform configuration files
       # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
     - name: Terraform Apply
-      if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+      if: github.ref == 'refs/heads/dev' && github.event_name == 'push'
       working-directory: ./gcp
       run: terraform apply -auto-approve
       env:
@@ -56,19 +56,5 @@ jobs:
         TF_VAR_mongodbatlas_public_key: ${{ secrets.API_PUBLIC_KEY }}
         TF_VAR_mongodbatlas_private_key: ${{ secrets.API_PRIVATE_KEY }}
 
-  # Installation:
-  #   needs: terraform
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Git clone
-  #       run: git clone https://github.com/Franec59/Dice_Arena.git
-  #     - name: Permission
-  #       working-directory: ./Dice_Arena
-  #       run: chmod 775 launch.sh
-  #     - name: execution du script
-  #       working-directory: ./Dice_Arena
-  #       run: ./launch.sh
-  #       env:
-  #         username: ${{ secrets.DOCKERHUB_USERNAME }}
-  #         password: ${{ secrets.DOCKERHUB_TOKEN }}
+  
 
