@@ -41,45 +41,45 @@ jobs:
         working-directory: ./web/model/craps
         run: |
           pytest
-  docker:
-    needs: python-test-unitaire
-    runs-on: ubuntu-latest
-    steps:
-      - name: recuperation du repo
-        uses: actions/checkout@v3
-        with:
-          ref: "dev"
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-      - name: Login to DockerHub
-        uses: docker/login-action@v1 
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: ref before
-        run: echo ${{github.ref_name}}
-      - uses: mr-smithers-excellent/docker-build-push@v5
-        name: Build & push Docker image
-        with:
-          image: franec59/arena
-          tags: latest
-          registry: docker.io
-          dockerfile: ./web/frontend/Dockerfile
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-      # - name: Build and push backend
+  # docker:
+  #   needs: python-test-unitaire
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: recuperation du repo
+  #       uses: actions/checkout@v3
+  #       with:
+  #         ref: "dev"
+  #     - name: Set up QEMU
+  #       uses: docker/setup-qemu-action@v1
+  #     - name: Set up Docker Buildx
+  #       uses: docker/setup-buildx-action@v1
+  #     - name: Login to DockerHub
+  #       uses: docker/login-action@v1 
+  #       with:
+  #         username: ${{ secrets.DOCKERHUB_USERNAME }}
+  #         password: ${{ secrets.DOCKERHUB_TOKEN }}
+  #     - name: ref before
+  #       run: echo ${{github.ref_name}}
+  #     - uses: mr-smithers-excellent/docker-build-push@v5
+  #       name: Build & push Docker image
+  #       with:
+  #         image: franec59/arena
+  #         tags: latest
+  #         registry: docker.io
+  #         dockerfile: ./web/frontend/Dockerfile
+  #         username: ${{ secrets.DOCKER_USERNAME }}
+  #         password: ${{ secrets.DOCKER_PASSWORD }}
+  #     # - name: Build and push backend
       #   uses: docker/build-push-action@v2
       #   with:
       #     file: ./web/backend/parties/Dockerfile
       #     push: true
       #     tags: franec59/arenaback:latest
-      - name: Build and push model
-        uses: docker/build-push-action@v2
-        with:
-          file: ./web/model/craps/Dockerfile
-          push: true
-          tags: franec59/arenamodel:latest
+      # - name: Build and push model
+      #   uses: docker/build-push-action@v2
+      #   with:
+      #     file: ./web/model/craps/Dockerfile
+      #     push: true
+      #     tags: franec59/arenamodel:latest
     
 # run: docker-compose -f "docker-compose.yml" up -d --build

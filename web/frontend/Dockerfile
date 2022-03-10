@@ -7,8 +7,8 @@ RUN npm install -g http-server
 WORKDIR /app
 
 # copie 'package.json' et 'package-lock.json' (si disponible)
-COPY ./web/frontend .
-# COPY package*.json ./
+# COPY ./web/frontend .
+COPY package*.json ./
 
 RUN ls
 
@@ -16,7 +16,7 @@ RUN ls
 RUN npm install
 
 # copie les fichiers et dossiers du projet dans le dossier de travail (par exemple : le dossier 'app')
-# COPY . .
+COPY . .
 
 # construit l'app pour la production en la minifiant
 RUN npm run build
