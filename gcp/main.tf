@@ -59,13 +59,13 @@ resource "google_compute_firewall" "fraxaty-rule" {
     }
     allow {
         protocol = "tcp"
-        ports = ["22", "80"]
+        ports = ["22", "80", "8080", "90", "8020", "8000", "27017", "8081"]
     }
     source_ranges = ["0.0.0.0/0"]
 }
 
 # resource "mongodbatlas_cluster" "da_cluster" {
-#   project_id = "dice-arena-340310"
+#   project_id = "622713d2a6294122762effac"
 #   name = "da_cluster"
 #   cluster_type = "REPLICASET"
 #   replication_specs {
