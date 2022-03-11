@@ -32,4 +32,4 @@ sudo docker-compose up -d
 
 # sudo docker run -d -p 8020:90 franec59/arenamodel
 
-sudo docker network create dochernetwork
+sudo docker network create dockernetwork
