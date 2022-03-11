@@ -32,4 +32,14 @@ sudo docker-compose up -d
 
 # sudo docker run -d -p 8020:90 franec59/arenamodel
 
+cd ../..
+
 sudo docker network create dockernetwork
+
+cd traefik/data/letsencrypt
+
+chmod 600 acme.json
+
+cd ../..
+
+sudo docker-compose up -d
