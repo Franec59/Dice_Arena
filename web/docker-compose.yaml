@@ -2,6 +2,7 @@ version: '3.7'
 
 services:
   front:
+    container_name: front
     build: ./frontend
     ports:
     - "8080:8080"

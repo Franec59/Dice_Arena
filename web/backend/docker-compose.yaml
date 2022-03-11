@@ -2,16 +2,19 @@ version: '3.7'
 
 services:
   mongo:
+    container_name: mongo
     image: mongo
     ports:
     - 27017:27017
   mongo-ui:
+    container_name: mongo-ui
     image: mongo-express
     ports:
     - 8081:8081
     depends_on:
     - mongo
   parties:
+    container_name: parties
     build: ./parties
     ports:
     - "8000:80"
