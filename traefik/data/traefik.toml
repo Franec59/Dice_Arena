@@ -1,20 +1,19 @@
 [entryPoints]
-  [entryPoints.web]
+  [entryPoints.http]
   address = ":80"
-
-  [entryPoints.websecure]
+  [entryPoints.https]
   address = ":443"
 
 [api]
-dashboard = false
 
 [providers.docker]
   endpoint = "unix:///var/run/docker.sock"
 
-
+[providers.file]
+  filename = "/etc/traefik/services.toml"
 
 [certificatesResolvers.letsencrypt.acme]
   email = "thrawn.1809@gmail.com"
-  storage = "acme.json"
+  storage = "/letsencrypt/acme.json"
   [certificatesResolvers.letsencrypt.acme.httpChallenge]
-    entryPoint = "web"
+    entryPoint = "http"
