@@ -31,3 +31,5 @@ sudo docker-compose up -d
 # sudo docker run -d -p 8080:8080 franec59/arena
 
 # sudo docker run -d -p 8020:90 franec59/arenamodel
+
+sudo docker network create dochernetwork
