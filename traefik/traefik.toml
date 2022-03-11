@@ -5,6 +5,9 @@
   [entryPoints.websecure]
   address = ":443"
 
+  [entryPoints.dashboard]
+    address = ":9090"
+
 [api]
 
 [providers.docker]

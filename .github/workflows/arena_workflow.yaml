@@ -1,8 +1,6 @@
 name: 'arena'
-on:
-  push:
-    branches:
-      - 'dev'
+on:on: workflow_dispatch
+
 jobs:
   vuejs-test-unitaire:
     runs-on: ubuntu-latest
