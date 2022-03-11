@@ -2,22 +2,18 @@ version: "3.3"
 
 services:
 
-  traefik:
-    image: "traefik:v2.6"
-    container_name: "traefik"
-    command:
-      #- "--log.level=DEBUG"
-      - "--api.insecure=true"
-      - "--providers.docker=true"
-      - "--providers.docker.exposedbydefault=false"
-      - "--entrypoints.websecure.address=:443"
-      - "--certificatesresolvers.myresolver.acme.tlschallenge=true"
-      - "--certificatesresolvers.myresolver.acme.email=francois.lion1805@gmail.com"
-      - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
+  reverse-proxy:
+    restart: always
+    image: traefik:v2.6
     ports:
-      - "127.0.0.1:10000:80"
-      - "127.0.0.1:10001:443"
-      - "127.0.0.1:10002:9090"
+    - "443:443"
+    - "80:80"
     volumes:
-      - "./letsencrypt:/letsencrypt"
-      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+    - ./traefik.toml:/etc/traefik/traefik.toml
+    - .letsencrypt/acme.json:/acme.json
+    - /var/run/docker.sock:/var/run/docker.sock
+    labels:
+    - "traefik.http.routers.http-catchall.rule=hostregexp({host:.+})"
+    - "traefik.http.routers.http-catchall.entrypoints=web"
+    - "traefik.http.routers.http-catchall.middlewares=redirect-to-https"
+    - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=websecure"
