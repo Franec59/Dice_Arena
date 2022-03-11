@@ -8,8 +8,9 @@
   [entryPoints.dashboard]
     address = ":9090"
 
-[api]
 
+[api]
+dashboard = false
 [providers.docker]
   endpoint = "unix:///var/run/docker.sock"
 
