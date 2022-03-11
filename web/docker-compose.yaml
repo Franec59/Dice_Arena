@@ -5,3 +5,9 @@ services:
     build: ./frontend
     ports:
     - "8070:8070"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.front.rule=Host(test.dice-arena.com)"
+      - "traefik.http.routers.front.entrypoints=websecure"
+      - "traefik.http.routers.front.tls.certresolver=myresolver"
+      - "traefik.http.services.front.loadbalancer.server.port=8070"
