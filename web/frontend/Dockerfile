@@ -21,7 +21,7 @@ COPY . .
 # construit l'app pour la production en la minifiant
 RUN npm run build
 
-EXPOSE 8080
+EXPOSE 8070
 CMD [ "http-server", "dist" ]
 
 # commande pour construire l'image
