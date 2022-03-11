@@ -10,10 +10,9 @@ services:
     - "80:80"
     volumes:
     - ./traefik.toml:/etc/traefik/traefik.toml
-    - .letsencrypt/acme.json:/acme.json
+    - ./letsencrypt/acme.json:/acme.json
     - /var/run/docker.sock:/var/run/docker.sock
     labels:
-    - "traefik.http.routers.http-catchall.rule=hostregexp({host:.+})"
     - "traefik.http.routers.http-catchall.entrypoints=web"
     - "traefik.http.routers.http-catchall.middlewares=redirect-to-https"
     - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=websecure"
