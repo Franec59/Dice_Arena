@@ -8,7 +8,7 @@ services:
     - "8080:8080"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.front.rule=Host(test.dice-arena.com)"
+      - "traefik.http.routers.front.rule=HostRegexp(test.arena.com, {subdomain:[a-z]+}.test.arena.com)"
       - "traefik.http.routers.front.entrypoints=websecure"
       - "traefik.http.routers.front.tls.certresolver=letsencrypt"
       - "traefik.http.services.front.loadbalancer.server.port=8080"
