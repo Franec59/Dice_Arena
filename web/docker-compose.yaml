@@ -17,7 +17,3 @@ services:
       - "traefik.http.routers.front.tls=true"
       - "traefik.http.routers.front.tls.certresolver=letsencrypt"
       - "traefik.http.services.front.loadbalancer.server.port=8080"
-      - "traefik.http.services.front.loadbalancer.server.port=8000"
-      - "traefik.http.services.front.loadbalancer.server.port=8020"
-      - "traefik.http.services.front.loadbalancer.server.port=27017"
-      - "traefik.http.services.front.loadbalancer.server.port=443"

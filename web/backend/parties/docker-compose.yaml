@@ -30,3 +30,10 @@ services:
     networks:
       - dockernetwork
       - db_net
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.front.rule=Host(`test.dice-arena.com`)"
+      - "traefik.http.routers.front.entrypoints=https"
+      - "traefik.http.routers.front.tls=true"
+      - "traefik.http.routers.front.tls.certresolver=letsencrypt"
+      - "traefik.http.services.front.loadbalancer.server.port=8000"
