@@ -84,7 +84,6 @@ export default {
       axios
         .post(`${ipStatic}` + ':8000/partie', newPartie)
         .then((response) => {
-          // console.log(response);
           console.log("retour db :", response.data._id);
 
         // renseigner le N° de partie et le profil dans le store =============
