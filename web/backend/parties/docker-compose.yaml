@@ -1,6 +1,8 @@
 version: '3.7'
 networks:
   db_net:
+  dockernetwork:
+    external: true
 services:
   mongo:
     container_name: mongo
