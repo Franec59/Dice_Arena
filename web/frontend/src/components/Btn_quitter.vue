@@ -22,7 +22,7 @@ export default {
       console.log("store : ", this.$store.state.idPseudo)
 
       axios
-        .delete(`${ipStatic}` + ':8000/partie/' + `${idDeleted}`)
+        .delete(`${ipStatic}` + ':80/partie/' + `${idDeleted}`)
         .then((response) => {
           console.log(response)
           this.$router.push("/");

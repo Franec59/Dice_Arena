@@ -60,7 +60,7 @@ export default {
       const ipStatic = this.$store.state.ip_static
     // requete GET pseudo du joueur ====================================
       axios
-        .get(`${ipStatic}` + ':8000/joueur/' + `${idJoueur}`)
+        .get(`${ipStatic}` + ':80/joueur/' + `${idJoueur}`)
         .then((response) => {
           // console.log("joueur :", response)
 
@@ -73,7 +73,7 @@ export default {
 
     // requete GET partie en cours ====================================
       axios
-        .get(`${ipStatic}` + ':8000/mapartie/' + `${idPartie}`)
+        .get(`${ipStatic}` + ':80/mapartie/' + `${idPartie}`)
         .then((response) => {
           console.log("mapartie :", response)
 

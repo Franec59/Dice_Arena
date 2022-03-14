@@ -1,11 +1,14 @@
 version: '3.7'
-
+networks:
+  db_net:
 services:
   mongo:
     container_name: mongo
     image: mongo
     ports:
     - 27017:27017
+    networks:
+      - db_net
   mongo-ui:
     container_name: mongo-ui
     image: mongo-express
@@ -13,6 +16,8 @@ services:
     - 8081:8081
     depends_on:
     - mongo
+    networks:
+      - db_net
   parties:
     container_name: parties
     build: ./parties
@@ -20,3 +25,6 @@ services:
     - "8000:80"
     environment:
     - MONGO_HOST=mongo
+    networks:
+      - dockernetwork
+      - db_net

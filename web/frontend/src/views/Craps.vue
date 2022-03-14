@@ -138,7 +138,7 @@ export default {
     lancer() {
       const ipStatic2 = this.$store.state.ip_static;
       axios
-        .post(`${ipStatic2}` + ":8020/launch")
+        .post("craps:90/launch")
         .then((response) => {
           console.log("launch :", response);
           this.lepoint = false;
@@ -153,7 +153,7 @@ export default {
         });
 
       axios
-        .get(`${ipStatic2}` + ":8020/check")
+        .get("craps:90/check")
         .then((response) => {
           console.log("check :", response);
           this.dice1 = response.data[2][0];

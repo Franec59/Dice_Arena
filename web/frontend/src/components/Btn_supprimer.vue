@@ -21,7 +21,7 @@ export default {
       axios.defaults.headers.post['Content-Type'] ='application/json;charset=utf-8';
       axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
       axios
-        .delete('https://' + `${ipStatic}` + ':8000/partie/' + `${idDeleted}`)
+        .delete('https://' + `${ipStatic}` + ':80/partie/' + `${idDeleted}`)
         .then((response) => {
           console.log(response)
           this.$router.push("/pseudo");
