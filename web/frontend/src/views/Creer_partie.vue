@@ -82,7 +82,7 @@ export default {
       const ipStatic = this.$store.state.ip_static
       // requete avec Axios pour le back ====================================
       axios
-        .post('http://' + `${ipStatic}` + ':8000/partie', newPartie)
+        .post(`${ipStatic}` + ':8000/partie', newPartie)
         .then((response) => {
           // console.log(response);
           console.log("retour db :", response.data._id);

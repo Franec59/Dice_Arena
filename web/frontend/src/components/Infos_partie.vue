@@ -56,7 +56,7 @@ export default {
      
     // requete GET partie en cours ====================================
       axios
-        .get('http://' + `${ipStatic}` + ':8000/mapartie/' + `${this.idPartie}`)
+        .get(`${ipStatic}` + ':8000/mapartie/' + `${this.idPartie}`)
         .then((response) => {
           // console.log("mapartie :", response)
 
@@ -70,7 +70,7 @@ export default {
 
     // requete GET du joueur en cours ====================================
       axios
-        .get('http://' + `${ipStatic}` + ':8000/joueur/' + `${idJoueur}`)
+        .get(`${ipStatic}` + ':8000/joueur/' + `${idJoueur}`)
         .then((response) => {
           // console.log("joueur :", response)
 
@@ -84,8 +84,7 @@ export default {
 
     //requete GET pour récupérer la liste des joueurs ================================================
       axios
-      .get('http://' + `${ipStatic}` + ':8000/liste/' + `${this.idPartie}`,
-      // .get('http://localhost:8000/liste/' + `${this.idPartie}`,
+      .get(`${ipStatic}` + ':8000/liste/' + `${this.idPartie}`,
       )
       .then(response => {
           // console.log("liste des joueurs :", response);

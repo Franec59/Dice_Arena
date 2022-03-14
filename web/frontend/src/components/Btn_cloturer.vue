@@ -23,8 +23,7 @@ export default {
       console.log("store : ", this.$store.state.idPartie)
 
       axios
-        .delete('http://' + `${ipStatic}` + ':8000/deletepartie/' + `${idPartie}`)
-        // .delete('http://localhost:8000/deletepartie/' + `${idPartie}`)
+        .delete(`${ipStatic}` + ':8000/deletepartie/' + `${idPartie}`)
         .then((response) => {
           console.log(response)
           this.$router.push("/");

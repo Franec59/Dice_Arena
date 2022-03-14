@@ -60,8 +60,7 @@ export default {
         // requete GET partie pour vérifier la partie en cours ====================================
         let verif = this.numPartie
       axios
-        .get('http://' + `${ipStatic}` + ':8000/mapartie/' + `${verif}`)
-        // .get('http://localhost:8000/mapartie/' + `${verif}`)
+        .get(`${ipStatic}` + ':8000/mapartie/' + `${verif}`)
         .then((response) => {
           console.log("response.data :", response.data)
           console.log("envoi de l'id partie au store :", this.numPartie);

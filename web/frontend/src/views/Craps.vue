@@ -97,8 +97,7 @@ export default {
     relancer() {
       const ipStatic = this.$store.state.ip_static;
       axios
-        // .post("http://localhost:8020/relance")
-        .post("http://" + `${ipStatic}` + ":8020/relance")
+        .post(`${ipStatic}` + ":8020/relance")
         .then((response) => {
           console.log("relance :", response);
           this.dice3 = response.data[1][0];
@@ -139,7 +138,7 @@ export default {
     lancer() {
       const ipStatic2 = this.$store.state.ip_static;
       axios
-        .post("http://" + `${ipStatic2}` + ":8020/launch")
+        .post(`${ipStatic2}` + ":8020/launch")
         .then((response) => {
           console.log("launch :", response);
           this.lepoint = false;
@@ -154,8 +153,7 @@ export default {
         });
 
       axios
-        .get("http://" + `${ipStatic2}` + ":8020/check")
-        // .get("http://localhost:8020/check")
+        .get(`${ipStatic2}` + ":8020/check")
         .then((response) => {
           console.log("check :", response);
           this.dice1 = response.data[2][0];
