@@ -9,6 +9,7 @@ apt-cache policy docker-ce -y
 sudo apt install docker-ce -y
 sudo apt install docker-compose -y
 sudo docker login
+chmod 775 reload.sh
 
 cd web/backend
 
