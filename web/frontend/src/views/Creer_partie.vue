@@ -73,7 +73,7 @@ export default {
   },
 
   methods: {
-    createPartie() {
+    async createPartie() {
       const newPartie = {
         partie: this.nomPartie,
         template: this.choixTemplate,
@@ -81,7 +81,7 @@ export default {
       // console.log(newPartie);
       const ipStatic = this.$store.state.ip_static
       // requete avec Axios pour le back ====================================
-      axios
+      await axios
         .post('http://' + `${ipStatic}` + ':8000/partie', newPartie)
         .then((response) => {
           // console.log(response);
