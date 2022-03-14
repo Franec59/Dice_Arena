@@ -32,7 +32,7 @@ services:
       - db_net
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.parties.rule=Host(`test.dice-arena.com:8000`)"
+      - "traefik.http.routers.parties.rule=Host(`test.dice-arena.com`)"
       - "traefik.http.routers.parties.entrypoints=https"
       - "traefik.http.routers.parties.tls=true"
       - "traefik.http.routers.parties.tls.certresolver=letsencrypt"
