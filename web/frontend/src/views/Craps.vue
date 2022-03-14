@@ -136,7 +136,6 @@ export default {
     },
 
     lancer() {
-      const ipStatic2 = this.$store.state.ip_static;
       axios
         .post("craps:90/launch")
         .then((response) => {
