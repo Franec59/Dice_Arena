@@ -2,6 +2,3 @@
 [http]
   [http.services]
     [http.services.front]
-[http]
-  [http.services]
-    [http.services.parties]
